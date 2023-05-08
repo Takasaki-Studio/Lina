@@ -12,22 +12,22 @@ public class BaseRepository<TModel, TKey> : IBaseRepository<TModel, TKey> where 
         _context = context;
     }
 
-    public async ValueTask Add(TModel model)
+    public virtual async ValueTask Add(TModel model)
     {
         await _context.Set<TModel>().AddAsync(model);
     }
 
-    public async Task<TModel?> GetById(TKey id)
+    public virtual async Task<TModel?> GetById(TKey id)
     {
         return await _context.Set<TModel>().FindAsync(id);
     }
 
-    public void Update(TModel model)
+    public virtual void Update(TModel model)
     {
         _context.Set<TModel>().Update(model);
     }
 
-    public void Delete(TModel model)
+    public virtual void Delete(TModel model)
     {
         _context.Set<TModel>().Remove(model);
     }
