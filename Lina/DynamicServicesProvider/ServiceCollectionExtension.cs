@@ -21,6 +21,18 @@ public static class ServiceCollectionExtension
             foreach (var attribute in attributes)
             {
                 if(attribute is not IDynamicServicesProviderAttribute diDynamicAttribute) continue;
+
+                if (diDynamicAttribute.DependencyType == DependencyType.Http)
+                {
+                    var extensionClass = typeof(HttpClientFactoryServiceCollectionExtensions);
+                    var extensionMethod = extensionClass.GetMethod("AddHttpClient", 2, new Type[] { typeof(IServiceCollection) });
+                    if(extensionMethod is null || diDynamicAttribute.Interface is null) continue;
+                    
+                    var genericMethod = extensionMethod.MakeGenericMethod(diDynamicAttribute.Interface, type);
+                    genericMethod.Invoke(null, new object[] { services });
+                    continue;
+                }
+                
                 switch (diDynamicAttribute.LifeTime)
                 {
                     case LifeTime.Scoped:
