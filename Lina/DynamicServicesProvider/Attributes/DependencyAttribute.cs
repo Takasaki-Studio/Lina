@@ -3,10 +3,10 @@ using Lina.DynamicServicesProvider.Interfaces;
 namespace Lina.DynamicServicesProvider.Attributes;
 
 [AttributeUsage(AttributeTargets.Class)]
-public class DependencyAttribute : Attribute, IDynamicServicesProviderAttribute
+public class DependencyAttribute : BasicDependencyAttribute
 {
-    public LifeTime LifeTime { get; }
-    public Type? Interface { get; }
+    public override LifeTime LifeTime { get; }
+    public override Type? Interface { get; }
     
     public DependencyAttribute(LifeTime lifeTime, Type? @interface = null)
     {
