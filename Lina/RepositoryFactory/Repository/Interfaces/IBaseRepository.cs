@@ -1,4 +1,4 @@
-﻿namespace Lina.Database.Repository.Interfaces;
+﻿namespace Lina.RepositoryFactory.Repository.Interfaces;
 
 public interface IBaseRepository<TModel, in TKey>
 {

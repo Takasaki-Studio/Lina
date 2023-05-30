@@ -1,13 +1,13 @@
-﻿using Lina.Database.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Lina.RepositoryFactory.Database;
+using Lina.RepositoryFactory.Repository.Interfaces;
 
-namespace Lina.Database.Repository;
+namespace Lina.RepositoryFactory.Repository;
 
 public class BaseRepository<TModel, TKey> : IBaseRepository<TModel, TKey> where TModel : class
 {
-    private readonly DbContext _context;
+    private readonly LinaDbContext _context;
 
-    protected BaseRepository(DbContext context)
+    protected BaseRepository(LinaDbContext context)
     {
         _context = context;
     }
@@ -35,7 +35,7 @@ public class BaseRepository<TModel, TKey> : IBaseRepository<TModel, TKey> where 
 
 public class BaseRepository<TModel> : BaseRepository<TModel, int> where TModel : class
 {
-    public BaseRepository(DbContext context) : base(context)
+    public BaseRepository(LinaDbContext context) : base(context)
     {
     }
 }
