@@ -1,5 +1,7 @@
 using System.Reflection;
 using Lina.DynamicServicesProvider.Interfaces;
+using Lina.RepositoryFactory.Database;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Lina.DynamicServicesProvider;
@@ -20,41 +22,63 @@ public static class ServiceCollectionExtension
             var attributes = Attribute.GetCustomAttributes(type);
             foreach (var attribute in attributes)
             {
-                if(attribute is not IDynamicServicesProviderAttribute diDynamicAttribute) continue;
+                if (attribute is not IDynamicServicesProviderAttribute diDynamicAttribute) continue;
 
-                if (diDynamicAttribute.DependencyType == DependencyType.Http)
+                switch (diDynamicAttribute.DependencyType)
                 {
-                    var extensionClass = typeof(HttpClientFactoryServiceCollectionExtensions);
-                    var extensionMethod = extensionClass.GetMethod("AddHttpClient", 2, new Type[] { typeof(IServiceCollection) });
-                    if(extensionMethod is null || diDynamicAttribute.Interface is null) continue;
-                    
-                    var genericMethod = extensionMethod.MakeGenericMethod(diDynamicAttribute.Interface, type);
-                    genericMethod.Invoke(null, new object[] { services });
-                    continue;
-                }
-                
-                switch (diDynamicAttribute.LifeTime)
-                {
-                    case LifeTime.Scoped:
-                        if (diDynamicAttribute.Interface != null)
-                            services.AddScoped(diDynamicAttribute.Interface, type);
-                        else
-                            services.AddScoped(type);
-                        break;
-                    case LifeTime.Singleton:
-                        if(diDynamicAttribute.Interface != null)
-                            services.AddSingleton(diDynamicAttribute.Interface, type);
-                        else
-                            services.AddSingleton(type);
-                        break;
-                    case LifeTime.Transient:
-                        if(diDynamicAttribute.Interface != null)
-                            services.AddTransient(diDynamicAttribute.Interface, type);
-                        else
-                            services.AddTransient(type);
-                        break;
+                    case DependencyType.Http:
+                    {
+                        var extensionClass = typeof(HttpClientFactoryServiceCollectionExtensions);
+                        var extensionMethod = extensionClass.GetMethod("AddHttpClient", 2,
+                            new Type[] { typeof(IServiceCollection) });
+                        if (extensionMethod is null || diDynamicAttribute.Interface is null) continue;
+
+                        var genericMethod = extensionMethod.MakeGenericMethod(diDynamicAttribute.Interface, type);
+                        genericMethod.Invoke(null, new object[] { services });
+                        continue;
+                    }
+                    case DependencyType.Database:
+                    {
+                        var extensionClass = typeof(EntityFrameworkServiceCollectionExtensions);
+                        var extensionMethod = extensionClass.GetMethod("AddDbContext", 2,
+                            new Type[]
+                            {
+                                typeof(IServiceCollection), typeof(Action<DbContextOptionsBuilder>),
+                                typeof(ServiceLifetime), typeof(ServiceLifetime)
+                            });
+                        if (extensionMethod is null) continue;
+
+                        var genericMethod = extensionMethod.MakeGenericMethod(typeof(LinaDbContext), type);
+                        genericMethod.Invoke(null, new object?[] { services, null, null, null });
+                        continue;
+                    }
                     default:
-                        throw new ArgumentOutOfRangeException(nameof(diDynamicAttribute.LifeTime), "LifeTime not supported");
+                        switch (diDynamicAttribute.LifeTime)
+                        {
+                            case LifeTime.Scoped:
+                                if (diDynamicAttribute.Interface != null)
+                                    services.AddScoped(diDynamicAttribute.Interface, type);
+                                else
+                                    services.AddScoped(type);
+                                break;
+                            case LifeTime.Singleton:
+                                if (diDynamicAttribute.Interface != null)
+                                    services.AddSingleton(diDynamicAttribute.Interface, type);
+                                else
+                                    services.AddSingleton(type);
+                                break;
+                            case LifeTime.Transient:
+                                if (diDynamicAttribute.Interface != null)
+                                    services.AddTransient(diDynamicAttribute.Interface, type);
+                                else
+                                    services.AddTransient(type);
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException(nameof(diDynamicAttribute.LifeTime),
+                                    "LifeTime not supported");
+                        }
+
+                        break;
                 }
             }
         }

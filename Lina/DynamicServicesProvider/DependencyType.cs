@@ -3,5 +3,6 @@ namespace Lina.DynamicServicesProvider;
 public enum DependencyType
 {
     Normal,
-    Http
+    Http,
+    Database
 }
