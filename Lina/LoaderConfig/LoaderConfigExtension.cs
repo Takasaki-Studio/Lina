@@ -5,10 +5,11 @@ namespace Lina.LoaderConfig;
 
 public static class LoaderConfigExtension
 {
-    public static T AddLoaderConfig<T>(this IServiceCollection serviceCollection) where T : class
+    public static T AddLoaderConfig<T>(this IServiceCollection serviceCollection, string jsonFileName = "config.json")
+        where T : class
     {
         var config = new ConfigurationBuilder<T>()
-            .UseJsonFile("config.json")
+            .UseJsonFile(jsonFileName)
             .UseEnvironmentVariables()
             .Build();
 

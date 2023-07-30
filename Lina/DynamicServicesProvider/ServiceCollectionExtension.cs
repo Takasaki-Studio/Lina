@@ -1,7 +1,5 @@
 using System.Reflection;
 using Lina.DynamicServicesProvider.Interfaces;
-using Lina.RepositoryFactory.Database;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Lina.DynamicServicesProvider;
@@ -30,26 +28,11 @@ public static class ServiceCollectionExtension
                     {
                         var extensionClass = typeof(HttpClientFactoryServiceCollectionExtensions);
                         var extensionMethod = extensionClass.GetMethod("AddHttpClient", 2,
-                            new Type[] { typeof(IServiceCollection) });
+                            new[] { typeof(IServiceCollection) });
                         if (extensionMethod is null || diDynamicAttribute.Interface is null) continue;
 
                         var genericMethod = extensionMethod.MakeGenericMethod(diDynamicAttribute.Interface, type);
                         genericMethod.Invoke(null, new object[] { services });
-                        continue;
-                    }
-                    case DependencyType.Database:
-                    {
-                        var extensionClass = typeof(EntityFrameworkServiceCollectionExtensions);
-                        var extensionMethod = extensionClass.GetMethod("AddDbContext", 2,
-                            new Type[]
-                            {
-                                typeof(IServiceCollection), typeof(Action<DbContextOptionsBuilder>),
-                                typeof(ServiceLifetime), typeof(ServiceLifetime)
-                            });
-                        if (extensionMethod is null) continue;
-
-                        var genericMethod = extensionMethod.MakeGenericMethod(typeof(LinaDbContext), type);
-                        genericMethod.Invoke(null, new object?[] { services, null, null, null });
                         continue;
                     }
                     default:
