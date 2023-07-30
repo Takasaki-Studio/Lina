@@ -8,7 +8,6 @@ public static class QueryableExtensions
 
         pageSize = pageSize switch
         {
-            > 30 => 30,
             < 1 => 1,
             _ => pageSize
         };
