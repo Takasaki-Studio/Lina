@@ -20,9 +20,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -c Release
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: run dotnet nuget add source --username USERNAME --password ${{ secrets.SECRET }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json"
+      run: run dotnet nuget add source --username ${{ secrets.USERNAME }} --password ${{ secrets.SECRET }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json"
     
