@@ -29,6 +29,6 @@ jobs:
       uses: jeertmans/filesfinder@latest
       id: ff
       with: 
-        args: "--dir ./Lina/bin/Release Lina.*"
+        args: "--dir /home/runner/work/Lina/Lina/Lina/bin/Release/ Lina.*"
     - name: Print Result
       run: echo "${{steps.ff.outputs.files}}"
