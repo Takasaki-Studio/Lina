@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore -c Release
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --verbosity normal
     - name: Publish
       run: run dotnet nuget add source --username ${{ secrets.USERNAME }} --password ${{ secrets.SECRET }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json"
     
