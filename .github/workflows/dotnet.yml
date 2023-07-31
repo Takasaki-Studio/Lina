@@ -25,3 +25,10 @@ jobs:
       run: dotnet test --verbosity normal
     - name: Add Nuget Source
       run: dotnet nuget add source "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json" --username "${{ secrets.USERNAME }}" --password "${{ secrets.SECRET }}" --name "github" --store-password-in-clear-text
+    - name: Finds Package File
+      uses: jeertmans/filesfinder@latest
+      id: ff
+      with: 
+        args: "--dir ./Lina/bin/Release Lina.*"
+    - name: Print Result
+      run: echo "${{steps.ff.outputs.files}}"
