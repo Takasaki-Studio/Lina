@@ -24,4 +24,4 @@ jobs:
     - name: Test
       run: dotnet test --verbosity normal
     - name: Add Nuget Source
-      run: run dotnet nuget add source "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json" --username "${{ secrets.USERNAME }}" --password "${{ secrets.SECRET }}" --store-password-in-clear-text --name "github" 
+      run: run dotnet nuget add source "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json" --username "${{ secrets.USERNAME }}" --password "${{ secrets.SECRET }}" --name "github" --store-password-in-clear-text
