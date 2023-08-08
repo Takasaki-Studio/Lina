@@ -67,6 +67,6 @@ jobs:
       - name: Build
         run: dotnet build --no-restore -c Release
       - name: Add Nuget Source
-        run: dotnet nuget add source "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json" --username "${{ secrets.USERNAME }}" --password "${{ secrets.SECRET }}" --name "github" --store-password-in-clear-text
+        run: dotnet nuget add source --store-password-in-clear-text "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json" --username "${{ secrets.USERNAME }}" --password "${{ secrets.SECRET }}" --name "github"
       - name: Publish to Github Package
         run: dotnet nuget push Lina/Lina/bin/Release/*.nupkg --api-key ${{ secrets.SECRET }} --source "github"
