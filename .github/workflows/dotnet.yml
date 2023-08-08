@@ -73,4 +73,4 @@ jobs:
            echo "Listing"
            ls -laR
       - name: Publish to Github Package
-        run: dotnet nuget push "bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
+        run: dotnet nuget push "./Lina/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
