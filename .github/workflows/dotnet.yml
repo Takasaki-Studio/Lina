@@ -7,13 +7,14 @@ on:
   pull_request:
     branches: [ "main" ]
 
+
+
 jobs:
   build:
     strategy:
       matrix:
         platform: [ ubuntu-latest, macos-latest, windows-latest ]
         version: [ 6.0.x ]
-    
     runs-on: ${{ matrix.platform }}
     
     steps:
@@ -28,13 +29,12 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore /WarnAsError
-        
+  
   test:
     strategy:
       matrix:
         platform: [ ubuntu-latest, macos-latest, windows-latest ]
         version: [ 6.0.x ]
-    
     runs-on: ${{ matrix.platform }}
     
     steps:
@@ -49,37 +49,28 @@ jobs:
         run: dotnet restore
       - name: Test
         run: dotnet test --no-build --verbosity normal
-        
-  confirm:
-    needs: 
-      - build
-      - test
-    
+
+  publish:
+    needs: [ build, test ]
+    environment: 'Production'
     runs-on: ubuntu-latest
 
-#  publish:
-#    needs: confirm
-#    
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#    - uses: actions/checkout@v3
-#    - name: Setup .NET
-#      uses: actions/setup-dotnet@v3
-#      with:
-#        dotnet-version: 6.0.x
-#    - name: Restore dependencies
-#      run: dotnet restore
-#    - name: Build
-#      run: dotnet build --no-restore -c Release
-#    - name: Test
-#      run: dotnet test --verbosity normal
-#    - name: Add Nuget Source
-#      run: dotnet nuget add source "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json" --username "${{ secrets.USERNAME }}" --password "${{ secrets.SECRET }}" --name "github" --store-password-in-clear-text
-#    - name: Finds Package File
-#      uses: jeertmans/filesfinder@latest
-#      id: ff
-#      with: 
-#        args: "--dir /home/runner/work/Lina/Lina/Lina/bin/Release/ Lina.*"
-#    - name: Print Result
-#      run: echo "${{steps.ff.outputs.files}}"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore -c Release
+      - name: Add Nuget Source
+        run: dotnet nuget add source "https://nuget.pkg.github.com/Takasaki-Studio/Lina/index.json" --username "${{ secrets.USERNAME }}" --password "${{ secrets.SECRET }}" --name "github" --store-password-in-clear-text
+#      - name: Finds Package File
+#        uses: jeertmans/filesfinder@latest
+#        id: ff
+#        with:
+#          args: "--dir /home/runner/work/Lina/Lina/Lina/bin/Release/ Lina.*"
+#      - name: Print Result
+#        run: echo "${{steps.ff.outputs.files}}"
