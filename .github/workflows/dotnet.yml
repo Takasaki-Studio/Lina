@@ -54,6 +54,7 @@ jobs:
     needs: [ build, test ]
     environment: 'Production'
     runs-on: ubuntu-latest
+    if: contains(github.ref_name, "main")
 
     steps:
       - uses: actions/checkout@v3
