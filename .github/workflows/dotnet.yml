@@ -7,8 +7,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-
-
 jobs:
   build:
     strategy:
@@ -68,9 +66,5 @@ jobs:
         run: dotnet build --no-restore -c Release
       - name: Add Nuget Source
         run: dotnet nuget add source --store-password-in-clear-text "https://nuget.pkg.github.com/Takasaki-Studio/index.json" --username "${{ secrets.USERNAME }}" --password "${{ secrets.SECRET }}" --name "github"
-      - name: List project directory
-        run: |
-           echo "Listing"
-           ls -laR
       - name: Publish to Github Package
         run: dotnet nuget push "./Lina/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
