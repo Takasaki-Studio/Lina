@@ -55,7 +55,7 @@ internal class TestModelValidator : AbstractValidator<TestModel>
     }
 }
 
-internal class TestModel : ValidateBaseEntity<TestModel, TestModelValidator, int>
+internal class TestModel : BaseValidateBaseEntity<TestModel, TestModelValidator, int>
 {
     public TestModel(string name)
     {
