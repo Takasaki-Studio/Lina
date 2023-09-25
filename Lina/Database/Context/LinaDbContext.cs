@@ -4,6 +4,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Lina.Database.Context;
 
+/// <summary>
+/// Implementation of <see cref="DbContext"/> with base configuration for dependency injection
+/// </summary>
 public class LinaDbContext : DbContext
 {
     private readonly IAssemblyEntityConfigurationInjection? _assemblyEntityConfigurationInjection;

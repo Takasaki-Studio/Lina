@@ -6,8 +6,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Lina.Database;
 
+/// <summary>
+/// Auxiliary functions for service builder
+/// </summary>
 public static class LinaDatabase
 {
+    /// <summary>
+    /// Inject <see cref="LinaDbContext"/> into dependency injection
+    /// </summary>
+    /// <param name="service">Service collection</param>
+    /// <param name="dbContextOptions">Database configuration with assembly name</param>
+    /// <param name="dbContextLifetime">Context life time</param>
+    /// <typeparam name="T">Class for assembly reference</typeparam>
     public static void AddLinaDbContext<T>(
         this IServiceCollection service,
         LinaDbContextConfigurationAssembly dbContextOptions,
@@ -21,6 +31,13 @@ public static class LinaDatabase
             dbContextLifetime);
     }
 
+    /// <summary>
+    /// Inject <see cref="LinaDbContext"/> into dependency injection
+    /// </summary>
+    /// <param name="service">Service collection</param>
+    /// <param name="dbContextOptions">Database configuration</param>
+    /// <param name="dbContextLifetime">Context life time</param>
+    /// <typeparam name="T">Class for assembly reference</typeparam>
     public static void AddLinaDbContext<T>(this IServiceCollection service, LinaDbContextConfiguration dbContextOptions,
         ServiceLifetime dbContextLifetime = ServiceLifetime.Scoped)
     {
