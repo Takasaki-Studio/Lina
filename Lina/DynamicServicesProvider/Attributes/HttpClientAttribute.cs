@@ -1,5 +1,21 @@
 namespace Lina.DynamicServicesProvider.Attributes;
 
+/// <summary>
+/// Defines a class as http client
+/// <example>
+/// <code>
+/// interface IFooHttpClient {
+///     /*...*/
+/// }
+/// </code>
+/// <code>
+/// [HttpClient(typeof(IFooHttpClient))]
+/// class FooHttpClient : IFooHttpClient {
+///     /*...*/
+/// }
+/// </code>
+/// </example>
+/// </summary>
 [AttributeUsage(AttributeTargets.Class)]
 public class HttpClientAttribute : BasicDependencyAttribute
 {

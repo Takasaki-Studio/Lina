@@ -2,6 +2,22 @@ using Lina.DynamicServicesProvider.Interfaces;
 
 namespace Lina.DynamicServicesProvider.Attributes;
 
+/// <summary>
+/// Defines a class as middleware
+/// <example>
+/// <code>
+/// interface IFooMiddleware {
+///     /*...*/
+/// }
+/// </code>
+/// <code>
+/// [Middleware(typeof(IFooMiddleware))]
+/// class FooMiddleware : IFooMiddleware {
+///     /*...*/
+/// }
+/// </code>
+/// </example>
+/// </summary>
 [AttributeUsage(AttributeTargets.Class)]
 public class MiddlewareAttribute : BasicDependencyAttribute
 {

@@ -4,14 +4,29 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Lina.DynamicServicesProvider;
 
+/// <summary>
+/// Auxiliary functions for service builder
+/// </summary>
 public static class ServiceCollectionExtension
 {
+    /// <summary>
+    ///  Auto inject class with attributes
+    ///  [<see cref="Lina.DynamicServicesProvider.Attributes.AdapterAttribute"/>]
+    ///  [<see cref="Lina.DynamicServicesProvider.Attributes.DependencyAttribute"/>]
+    ///  [<see cref="Lina.DynamicServicesProvider.Attributes.HttpClientAttribute"/>]
+    ///  [<see cref="Lina.DynamicServicesProvider.Attributes.MiddlewareAttribute"/>]
+    ///  [<see cref="Lina.DynamicServicesProvider.Attributes.RepositoryAttribute"/>]
+    ///  [<see cref="Lina.DynamicServicesProvider.Attributes.ServiceAttribute"/>]
+    ///  into dependency injection
+    /// </summary>
+    /// <param name="services">Service collection</param>
+    /// <typeparam name="T">Class for assembly reference</typeparam>
     public static void AddDynamicServices<T>(this IServiceCollection services)
     {
         var assembly = typeof(T).Assembly;
         AddServicesFromAssembly(assembly, services);
     }
-
+    
     private static void AddServicesFromAssembly(Assembly assembly, IServiceCollection services)
     {
         var types = assembly.GetTypes();
