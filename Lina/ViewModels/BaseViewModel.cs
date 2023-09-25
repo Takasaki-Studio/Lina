@@ -5,7 +5,7 @@ using Lina.Common.Interfaces;
 namespace Lina.ViewModels;
 
 /// <summary>
-/// Base class to view model with basic validation with <a href="https://docs.fluentvalidation.net/en/latest/">Fluent Validation</a>
+/// Base class to view model with basic validation using <a href="https://docs.fluentvalidation.net/en/latest/">Fluent Validation</a>
 /// </summary>
 /// <typeparam name="TModel">Self ref class</typeparam>
 /// <typeparam name="TValidationClass">Validation class implementation</typeparam>
