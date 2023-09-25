@@ -8,6 +8,7 @@ namespace Lina.DynamicMapperConfiguration.Abstracts;
 /// </summary>
 /// <typeparam name="TOrigin">Model origin</typeparam>
 /// <typeparam name="TDestiny">Model destiny</typeparam>
+[Obsolete("Auto mapper discontinued")]
 public abstract class DynamicMapperProfile<TOrigin, TDestiny> : Profile, IDynamicMapperProfile
 {
     private readonly IMappingExpression<TOrigin, TDestiny> _mappingExpression;
@@ -25,6 +26,7 @@ public abstract class DynamicMapperProfile<TOrigin, TDestiny> : Profile, IDynami
     /// <summary>
     /// Map configuration
     /// </summary>
-    /// <param name="mappingExpression"></param>
+    /// <param name="mappingExpression">Map configuration expression</param>
+    [Obsolete("Auto mapper discontinued")]
     protected abstract void Map(IMappingExpression<TOrigin, TDestiny> mappingExpression);
 }

@@ -16,6 +16,7 @@ public static class DynamicMapperExtension
     /// </summary>
     /// <param name="services">Service collection</param>
     /// <typeparam name="T">Class for assembly reference</typeparam>
+    [Obsolete("Auto mapper discontinued")]
     public static void AddDynamicMappers<T>(this IServiceCollection services)
     {
         var assembly = typeof(T).Assembly;
