@@ -6,8 +6,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Lina.DynamicMapperConfiguration;
 
+/// <summary>
+/// Auxiliary functions for service builder
+/// </summary>
 public static class DynamicMapperExtension
 {
+    /// <summary>
+    /// Add <a href="https://docs.automapper.org/en/stable/">Auto Mapper</a> mappings into dependency injection 
+    /// </summary>
+    /// <param name="services">Service collection</param>
+    /// <typeparam name="T">Class for assembly reference</typeparam>
     public static void AddDynamicMappers<T>(this IServiceCollection services)
     {
         var assembly = typeof(T).Assembly;
@@ -59,7 +67,6 @@ public static class DynamicMapperExtension
         return assembly.GetTypes()
             .Where(t => GetAllAscendants(t).Any(d =>
                 d.IsGenericType &&
-                d.GetGenericTypeDefinition()
-                    .Equals(genericTypeDefinition)));
+                d.GetGenericTypeDefinition() == genericTypeDefinition));
     }
 }
