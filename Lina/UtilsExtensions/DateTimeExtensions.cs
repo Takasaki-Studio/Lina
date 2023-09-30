@@ -11,5 +11,5 @@ public static class DateTimeExtensions
     public static DateTime TrimMillis(this DateTime dateTime) => new(dateTime.Year, dateTime.Month, dateTime.Day,
         dateTime.Hour, dateTime.Minute, dateTime.Second);
 
-    public static DateTime AsUtc(this DateTime dateTime) => DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
+    public static DateTime SetKindToUtc(this DateTime dateTime) => DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
 }
