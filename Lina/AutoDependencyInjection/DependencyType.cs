@@ -1,4 +1,4 @@
-namespace Lina.DynamicServicesProvider;
+namespace Lina.AutoDependencyInjection;
 
 /// <summary>
 /// Injection type

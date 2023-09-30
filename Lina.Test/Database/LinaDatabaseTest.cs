@@ -19,7 +19,7 @@ public class LinaDatabaseTest
         var provider = servicesCollection.BuildServiceProvider();
 
         var assemblyConfig = provider.GetRequiredService<IAssemblyEntityConfigurationInjection>();
-        Assert.IsNotNull(assemblyConfig?.ConfigurationAssembly);
+        Assert.IsNotNull(assemblyConfig.ConfigurationAssembly);
 
         var dbContext = provider.GetRequiredService<DbContext>();
         Assert.IsNotNull(dbContext);
@@ -39,7 +39,7 @@ public class LinaDatabaseTest
         var provider = servicesCollection.BuildServiceProvider();
 
         var assemblyConfig = provider.GetRequiredService<IAssemblyEntityConfigurationInjection>();
-        Assert.IsNotNull(assemblyConfig?.ConfigurationAssembly);
+        Assert.IsNotNull(assemblyConfig.ConfigurationAssembly);
 
         var dbContext = provider.GetRequiredService<DbContext>();
         Assert.IsNotNull(dbContext);

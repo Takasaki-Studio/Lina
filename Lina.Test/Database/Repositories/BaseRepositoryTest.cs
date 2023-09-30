@@ -1,6 +1,5 @@
 using Lina.Database;
 using Lina.Database.Context;
-using Lina.Database.Interfaces;
 using Lina.Database.Models;
 using Lina.Database.Repositories;
 using Microsoft.EntityFrameworkCore;

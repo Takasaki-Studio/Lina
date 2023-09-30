@@ -1,5 +1,3 @@
-using Lina.UtilsExtensions;
-
 namespace Lina.Database.Models;
 
 /// <summary>

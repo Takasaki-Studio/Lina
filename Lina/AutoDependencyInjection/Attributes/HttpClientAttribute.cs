@@ -1,4 +1,4 @@
-namespace Lina.DynamicServicesProvider.Attributes;
+namespace Lina.AutoDependencyInjection.Attributes;
 
 /// <summary>
 /// Defines a class as http client
