@@ -1,7 +1,16 @@
 namespace Lina.UtilsExtensions;
 
+/// <summary>
+/// Utils exception functions
+/// </summary>
 public static class ExceptionExtensions
 {
+    /// <summary>
+    /// Find exception in inner exceptions
+    /// </summary>
+    /// <param name="ex">Exception</param>
+    /// <typeparam name="T">Inner exception type</typeparam>
+    /// <returns>Inner exception data</returns>
     public static T? GetInnerException<T>(this Exception ex)
         where T : Exception
     {

@@ -1,7 +1,10 @@
-using Lina.DynamicServicesProvider.Interfaces;
+using Lina.AutoDependencyInjection.Interfaces;
 
-namespace Lina.DynamicServicesProvider.Attributes;
+namespace Lina.AutoDependencyInjection.Attributes;
 
+/// <summary>
+/// Base attribute for implement other attributes 
+/// </summary>
 public abstract class BasicDependencyAttribute : Attribute, IDynamicServicesProviderAttribute
 {
     public abstract LifeTime LifeTime { get; }

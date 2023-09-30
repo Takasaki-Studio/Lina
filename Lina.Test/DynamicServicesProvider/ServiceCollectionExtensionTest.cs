@@ -1,5 +1,5 @@
-using Lina.DynamicServicesProvider;
-using Lina.DynamicServicesProvider.Attributes;
+using Lina.AutoDependencyInjection;
+using Lina.AutoDependencyInjection.Attributes;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Lina.Test.DynamicServicesProvider;
@@ -12,7 +12,7 @@ public class ServiceCollectionExtensionTest
     public ServiceCollectionExtensionTest()
     {
         var builder = new ServiceCollection();
-        builder.AddDynamicServices<ServiceCollectionExtensionTest>();
+        builder.AddAutoDependencyInjection<ServiceCollectionExtensionTest>();
         _serviceProvider = builder.BuildServiceProvider();
     }
     
@@ -27,7 +27,7 @@ public class ServiceCollectionExtensionTest
     public void TestLoadHttpClientService()
     {
         var serviceLoaded = _serviceProvider.GetRequiredService<IService>();
-        Assert.IsTrue(serviceLoaded?.HasClient == true);
+        Assert.IsTrue(serviceLoaded.HasClient);
     }
 }
 

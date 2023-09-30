@@ -4,6 +4,12 @@ using Lina.Common.Interfaces;
 
 namespace Lina.Database.Models;
 
+/// <summary>
+/// Base entity with validation
+/// </summary>
+/// <typeparam name="TModel">Entity model</typeparam>
+/// <typeparam name="TValidationClass">Entity model validation</typeparam>
+/// <typeparam name="TPkKey">Entity id type</typeparam>
 public abstract class BaseValidateBaseEntity<TModel, TValidationClass, TPkKey> : BaseEntity<TPkKey>,
     IValidate,
     IBaseValidate<TModel, TValidationClass>
