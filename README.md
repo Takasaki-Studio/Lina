@@ -24,15 +24,15 @@ A framework to simplify application creation by improving dependency injection, 
 
 ```csharp
 using Config.Net;
-using Lina.DynamicServicesProvider;
-using Lina.DynamicServicesProvider.Attributes;
+using Lina.AutoDependencyInjection;
+using Lina.AutoDependencyInjection.Attributes;
 using Lina.LoaderConfig;
 using Microsoft.Extensions.DependencyInjection;
 
 var serviceCollection = new ServiceCollection();
 
 serviceCollection.AddLoaderConfig<IAppConfig>();
-serviceCollection.AddDynamicServices<Program>();
+serviceCollection.AddAutoDependencyInjection<Program>();
 
 var services = serviceCollection.BuildServiceProvider();
 
@@ -189,7 +189,7 @@ using Lina.Database;
 using Lina.Database.Interfaces;
 using Lina.Database.Models;
 using Lina.Database.Repositories;
-using Lina.DynamicServicesProvider.Attributes;
+using Lina.AutoDependencyInjection.Attributes;
 using Lina.LoaderConfig;
 using Lina.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -199,6 +199,7 @@ using Microsoft.Extensions.DependencyInjection;
 var serviceCollection = new ServiceCollection();
 
 var config = serviceCollection.AddLoaderConfig<IAppConfig>();
+serviceCollection.AddAutoDependencyInjection<Program>();
 serviceCollection.AddLinaDbContext<Program>((builder, assembly) =>
     builder.UseMySql(config.DatabaseUrl, ServerVersion.AutoDetect(config.DatabaseUrl),
         optionsBuilder => optionsBuilder.MigrationsAssembly(assembly)));
@@ -305,7 +306,7 @@ public class UserService : IUserService
 }
 ```
 
-## Library usage
+## Libraries usage
 
 - [Config.Net](https://github.com/aloneguid/config)
 - [FluentValidation](https://docs.fluentvalidation.net/en/latest/)
