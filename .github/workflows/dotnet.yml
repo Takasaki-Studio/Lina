@@ -67,7 +67,7 @@ jobs:
         run: dotnet nuget push "./Lina/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
 
   publish_nuget:
-    needs: [ publish_github ]
+    needs: [ test ]
     environment: 'Production Nuget'
     runs-on: ubuntu-latest
     if: github.ref_name == 'main'
