@@ -21,8 +21,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.version }}
-      - name: Login into Github Packeges
-        run: dotnet nuget add source --store-password-in-clear-text "https://nuget.pkg.github.com/Takasaki-Studio/index.json" --name github --username ${{ secrets.USERNAME }} --password ${{ secrets.SECRET }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
@@ -41,8 +39,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.version }}
-      - name: Login into Github Packeges
-        run: dotnet nuget add source --store-password-in-clear-text "https://nuget.pkg.github.com/Takasaki-Studio/index.json" --name github --username ${{ secrets.USERNAME }} --password ${{ secrets.SECRET }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Test
