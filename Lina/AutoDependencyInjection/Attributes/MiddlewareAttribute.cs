@@ -17,14 +17,7 @@ namespace Lina.AutoDependencyInjection.Attributes;
 /// </example>
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
-public class MiddlewareAttribute : BasicDependencyAttribute
+public class MiddlewareAttribute<T>(LifeTime lifeTime = LifeTime.Transient) : BasicDependencyAttribute<T>
 {
-    public override LifeTime LifeTime { get; }
-    public override Type? Interface { get; }
-    
-    public MiddlewareAttribute(LifeTime lifeTime = LifeTime.Transient)
-    {
-        LifeTime = lifeTime;
-        Interface = null;
-    }
+    public override LifeTime LifeTime { get; } = lifeTime;
 }

@@ -1,5 +1,4 @@
 using System.Reflection;
-using Lina.AutoDependencyInjection.Attributes;
 using Lina.AutoDependencyInjection.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,7 +12,7 @@ public static class ServiceCollectionExtension
     /// <summary>
     ///  Auto inject class with attributes
     ///  [<see cref="services"/>]
-    ///  [<see cref="DependencyAttribute"/>]
+    ///  [<see cref="DependencyAttribute{T}"/>]
     ///  [<see cref="AdapterAttribute"/>]
     ///  [<see cref="DependencyAttribute"/>]
     ///  [<see cref="HttpClientAttribute"/>]

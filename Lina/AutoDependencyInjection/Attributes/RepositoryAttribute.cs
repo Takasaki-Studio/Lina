@@ -17,14 +17,7 @@ namespace Lina.AutoDependencyInjection.Attributes;
 /// </example>
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
-public class RepositoryAttribute : BasicDependencyAttribute
+public class RepositoryAttribute<T>(LifeTime lifeTime = LifeTime.Scoped) : BasicDependencyAttribute<T>
 {
-    public override LifeTime LifeTime { get; }
-    public override Type? Interface { get; }
-    
-    public RepositoryAttribute(Type @interface, LifeTime lifeTime = LifeTime.Scoped)
-    {
-        LifeTime = lifeTime;
-        Interface = @interface;
-    }
+    public override LifeTime LifeTime { get; } = lifeTime;
 }

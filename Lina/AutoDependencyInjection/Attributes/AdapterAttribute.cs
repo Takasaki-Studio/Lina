@@ -17,14 +17,7 @@ namespace Lina.AutoDependencyInjection.Attributes;
 /// </example>
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
-public class AdapterAttribute : BasicDependencyAttribute
+public class AdapterAttribute<T>(LifeTime lifeTime = LifeTime.Singleton) : BasicDependencyAttribute<T>
 {
-    public override LifeTime LifeTime { get; }
-    public override Type? Interface { get; }
-
-    public AdapterAttribute(Type @interface,  LifeTime lifeTime = LifeTime.Singleton)
-    {
-        Interface = @interface;
-        LifeTime = lifeTime;
-    }
+    public override LifeTime LifeTime { get; } = lifeTime;
 }

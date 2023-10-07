@@ -2,7 +2,7 @@ using Lina.AutoDependencyInjection;
 using Lina.AutoDependencyInjection.Attributes;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Lina.Test.DynamicServicesProvider;
+namespace Lina.Test.AutoDepedencyInjection;
 
 [TestClass]
 public class ServiceCollectionExtensionTest
@@ -37,7 +37,7 @@ public interface IService
     bool HasClient { get; }
 }
 
-[Service(typeof(IService))]
+[Service<IService>]
 public class Service : IService
 {
     private readonly IHttpClientService? _httpClient;
@@ -55,7 +55,7 @@ public interface IHttpClientService
     public HttpClient HttpClient { get; }
 }
 
-[HttpClient(typeof(IHttpClientService))]
+[HttpClient<IHttpClientService>]
 public class HttpClientService : IHttpClientService
 {
     public HttpClient HttpClient { get; }

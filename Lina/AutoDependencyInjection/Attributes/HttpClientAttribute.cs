@@ -17,14 +17,7 @@ namespace Lina.AutoDependencyInjection.Attributes;
 /// </example>
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
-public class HttpClientAttribute : BasicDependencyAttribute
+public class HttpClientAttribute<T>() : BasicDependencyAttribute<T>(DependencyType.Http)
 {
-    public HttpClientAttribute(Type @interface) : base(DependencyType.Http)
-    {
-        LifeTime = LifeTime.Transient;
-        Interface = @interface;
-    }
-
-    public override LifeTime LifeTime { get; }
-    public override Type? Interface { get; }
+    public override LifeTime LifeTime { get; } = LifeTime.Transient;
 }
