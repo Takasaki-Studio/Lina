@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>2.0.0-preview.1</Version>
+        <PackageId>TakasakiStudio.Lina.AspNet</PackageId>
+        <Authors>TakasakiStudio</Authors>
+        <RepositoryUrl>https://github.com/Takasaki-Studio/Lina</RepositoryUrl>
+        <Company>Lina</Company>
+        <Product>Lina</Product>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+</Project>
