@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Version>2.0.0-preview.1</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>TakasakiStudio.Lina.AspNet</PackageId>
         <Authors>TakasakiStudio</Authors>
         <RepositoryUrl>https://github.com/Takasaki-Studio/Lina</RepositoryUrl>

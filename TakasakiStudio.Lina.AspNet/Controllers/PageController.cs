@@ -4,7 +4,7 @@ using TakasakiStudio.Lina.AspNet.ActionResults;
 
 namespace TakasakiStudio.Lina.AspNet.Controllers;
 
-public class PageController : Controller
+public abstract class PageController : Controller
 {
     protected static IActionResult RenderComponent<T>(object? componentParams = null)
         where T : IComponent
