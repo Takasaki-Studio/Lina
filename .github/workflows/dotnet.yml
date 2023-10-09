@@ -49,7 +49,7 @@ jobs:
     needs: [ test ]
     environment: 'Production'
     runs-on: ubuntu-latest
-    if: github.ref_name == 'dev'
+    if: github.ref_name == 'dev' && github.event_name == 'push'
 
     steps:
       - uses: actions/checkout@v3
@@ -70,7 +70,7 @@ jobs:
     needs: [ test ]
     environment: 'Production Nuget'
     runs-on: ubuntu-latest
-    if: github.ref_name == 'main'
+    if: github.ref_name == 'main' && github.event_name == 'push'
     
     steps:
       - uses: actions/checkout@v3
