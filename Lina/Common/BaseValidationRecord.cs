@@ -9,7 +9,7 @@ namespace Lina.ViewModels;
 /// </summary>
 /// <typeparam name="TModel">Self ref class</typeparam>
 /// <typeparam name="TValidationClass">Validation class implementation</typeparam>
-public abstract record BaseViewModel<TModel, TValidationClass> : IValidate, IBaseValidate<TModel, TValidationClass>
+public abstract record BaseValidationRecord<TModel, TValidationClass> : IValidate, IBaseValidate<TModel, TValidationClass>
 where TValidationClass : IValidator<TModel>
 {
     /// <summary>
