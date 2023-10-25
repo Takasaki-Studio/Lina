@@ -28,4 +28,17 @@ public static class EnumExtensions
     {
         return value is null ? "" : Convert.ToInt32(value).ToString();
     }
+
+    public static T ToFlags<T>(this IEnumerable<T> list)
+        where T : struct, Enum
+    {
+        var result = 0UL;
+        foreach (var flag in list)
+        {
+            var flagInNumber = Convert.ToUInt64(flag);
+            result |= flagInNumber;
+        }
+
+        return (T)Enum.ToObject(typeof(T), result);
+    }
 }
