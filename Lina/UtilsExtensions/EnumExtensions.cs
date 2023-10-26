@@ -33,12 +33,31 @@ public static class EnumExtensions
         where T : struct, Enum
     {
         var result = 0UL;
+        var underlyingType = Enum.GetUnderlyingType(typeof(T));
         foreach (var flag in list)
         {
-            var flagInNumber = Convert.ToUInt64(flag);
-            result |= flagInNumber;
+            var flagInNumber = Convert.ChangeType(flag, underlyingType).ToString();
+            if (flagInNumber is not null)
+            {
+                result |= uint.Parse(flagInNumber);
+            }
         }
 
-        return (T)Enum.ToObject(typeof(T), result);
+        return (T)Enum.ToObject(typeof(T), Convert.ChangeType(result, underlyingType));
+    }
+
+    public static IEnumerable<T> ToEnumerable<T>(this T flag)
+        where T : struct, Enum
+    {
+        var flagInNumber = Convert.ToUInt64(flag);
+        var underlyingType = Enum.GetUnderlyingType(typeof(T));
+        return Enum.GetValues<T>()
+            .Select(x =>
+            {
+                var stringConverted = Convert.ChangeType(x, underlyingType).ToString();
+                return ulong.Parse(stringConverted ?? "0");
+            })
+            .Where(x => (x & flagInNumber) == x)
+            .Select(x => (T)Enum.ToObject(typeof(T), x));
     }
 }
