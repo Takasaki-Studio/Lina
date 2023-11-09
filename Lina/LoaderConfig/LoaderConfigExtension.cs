@@ -19,8 +19,8 @@ public static class LoaderConfigExtension
         where T : class
     {
         var config = new ConfigurationBuilder<T>()
-            .UseJsonFile(jsonFileName)
             .UseEnvironmentVariables()
+            .UseJsonFile(jsonFileName)
             .Build();
 
         serviceCollection.AddSingleton(config);
