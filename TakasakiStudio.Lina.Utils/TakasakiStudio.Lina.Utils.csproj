@@ -4,6 +4,19 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Version>2.0.0-rc.1</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>TakasakiStudio.Lina.Utils</PackageId>
+        <Title>TakasakiStudio.Lina.Utils</Title>
+        <Authors>TakasakiStudio</Authors>
+        <RepositoryUrl>https://github.com/Takasaki-Studio/Lina</RepositoryUrl>
+        <Company>Lina</Company>
+        <Product>Lina</Product>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <Description>A library containing useful functions.</Description>
+        <Copyright>TakasakiStudio</Copyright>
+        <PackageProjectUrl>https://github.com/Takasaki-Studio/Lina</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,6 +27,14 @@
       <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
         <HintPath>..\..\..\..\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\8.0.0\lib\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>

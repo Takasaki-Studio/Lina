@@ -4,6 +4,19 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Version>2.0.0-rc.1</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>TakasakiStudio.Lina.Database</PackageId>
+        <Title>TakasakiStudio.Lina.Database</Title>
+        <Authors>TakasakiStudio</Authors>
+        <RepositoryUrl>https://github.com/Takasaki-Studio/Lina</RepositoryUrl>
+        <Company>Lina</Company>
+        <Product>Lina</Product>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <Description>A library to facilitate the creation of models and repositories using EntityFramework.</Description>
+        <Copyright>TakasakiStudio</Copyright>
+        <PackageProjectUrl>https://github.com/Takasaki-Studio/Lina</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +25,14 @@
 
     <ItemGroup>
       <ProjectReference Include="..\TakasakiStudio.Lina.Common\TakasakiStudio.Lina.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>
