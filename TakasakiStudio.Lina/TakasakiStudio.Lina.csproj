@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>2.0.0-rc.1</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>TakasakiStudio.Lina</PackageId>
+        <Title>TakasakiStudio.Lina</Title>
+        <Authors>TakasakiStudio</Authors>
+        <RepositoryUrl>https://github.com/Takasaki-Studio/Lina</RepositoryUrl>
+        <Company>Lina</Company>
+        <Product>Lina</Product>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <Description>A framework to simplify application creation by improving dependency injection, validation, config and database handling</Description>
+        <Copyright>TakasakiStudio</Copyright>
+        <PackageProjectUrl>https://github.com/Takasaki-Studio/Lina</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="TakasakiStudio.Lina.AspNet" Version="*" />
+        <PackageReference Include="TakasakiStudio.Lina.AutoDependencyInjection" Version="*" />
+        <PackageReference Include="TakasakiStudio.Lina.Common" Version="*" />
+        <PackageReference Include="TakasakiStudio.Lina.Database" Version="*" />
+        <PackageReference Include="TakasakiStudio.Lina.Utils" Version="*" />
+    </ItemGroup>
+
+</Project>

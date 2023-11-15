@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina.Utils",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina.AutoDependencyInjection", "TakasakiStudio.Lina.AutoDependencyInjection\TakasakiStudio.Lina.AutoDependencyInjection.csproj", "{A5B7595B-7CE2-48A2-98FE-7004F9C64E4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina", "TakasakiStudio.Lina\TakasakiStudio.Lina.csproj", "{51F04308-2658-4EF5-AA3A-3126B77040C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{A5B7595B-7CE2-48A2-98FE-7004F9C64E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5B7595B-7CE2-48A2-98FE-7004F9C64E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5B7595B-7CE2-48A2-98FE-7004F9C64E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51F04308-2658-4EF5-AA3A-3126B77040C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F04308-2658-4EF5-AA3A-3126B77040C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F04308-2658-4EF5-AA3A-3126B77040C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51F04308-2658-4EF5-AA3A-3126B77040C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
