@@ -10,4 +10,10 @@ public abstract class BaseEntity<TPkType>
     /// Entity id
     /// </summary>
     public TPkType Id { get; set; } = default!;
+    
+    public T Clone<T>()
+        where T: BaseEntity<TPkType>
+    {
+        return (T)MemberwiseClone();
+    }
 }
