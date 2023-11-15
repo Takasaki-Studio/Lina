@@ -1,0 +1,109 @@
+name: .NET 8
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "dotnet8" ]
+  pull_request:
+    branches: [ "dotnet8" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [ ubuntu-latest, macos-latest, windows-latest ]
+        version: [ 8.x ]
+    runs-on: ${{ matrix.platform }}
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.version }}
+      - name: Login into Github Packeges
+        run: dotnet nuget add source --store-password-in-clear-text "https://nuget.pkg.github.com/Takasaki-Studio/index.json" --name github --username ${{ secrets.USERNAME }} --password ${{ secrets.SECRET }}
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore /WarnAsError
+  
+  test:
+    strategy:
+      matrix:
+        platform: [ ubuntu-latest, macos-latest, windows-latest ]
+        version: [ 8.x ]
+    runs-on: ${{ matrix.platform }}
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.version }}
+      - name: Login into Github Packeges
+        run: dotnet nuget add source --store-password-in-clear-text "https://nuget.pkg.github.com/Takasaki-Studio/index.json" --name github --username ${{ secrets.USERNAME }} --password ${{ secrets.SECRET }}
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Test
+        run: dotnet test --verbosity normal
+
+  publish_github:
+    needs: [ test ]
+    environment: 'Production'
+    runs-on: ubuntu-latest
+    if: github.ref_name == 'dotnet8' && github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore -c Release
+      - name: Add Nuget Source
+        run: dotnet nuget add source --store-password-in-clear-text "https://nuget.pkg.github.com/Takasaki-Studio/index.json" --username "${{ secrets.USERNAME }}" --password "${{ secrets.SECRET }}" --name "github"
+      - name: Publish TakasakiStudio.Lina.Common to Github Package
+        run: dotnet nuget push "./TakasakiStudio.Lina.Common/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
+      - name: Publish TakasakiStudio.Lina.AutoDependencyInjection to Github Package
+        run: dotnet nuget push "./TakasakiStudio.Lina.AutoDependencyInjection/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
+      - name: Publish TakasakiStudio.Lina.Utils to Github Package
+        run: dotnet nuget push "./TakasakiStudio.Lina.Utils/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
+      - name: Publish TakasakiStudio.Lina.Database to Github Package
+        run: dotnet nuget push "./TakasakiStudio.Lina.Database/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
+      - name: Publish TakasakiStudio.Lina.AspNet to Github Package
+        run: dotnet nuget push "./TakasakiStudio.Lina.AspNet/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
+      - name: Publish TakasakiStudio.Lina to Github Package
+        run: dotnet nuget push "./TakasakiStudio.Lina/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
+
+  publish_nuget:
+    needs: [ test ]
+    environment: 'Production Nuget'
+    runs-on: ubuntu-latest
+    if: github.ref_name == 'dotnet8' && github.event_name == 'push'
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore -c Release
+      - name: Publish TakasakiStudio.Lina.Common to Nuget
+        run: dotnet nuget push "./TakasakiStudio.Lina.Common/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "nuget.org"
+      - name: Publish TakasakiStudio.Lina.AutoDependencyInjection to Nuget
+        run: dotnet nuget push "./TakasakiStudio.Lina.AutoDependencyInjection/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "nuget.org"
+      - name: Publish TakasakiStudio.Lina.Utils to Nuget
+        run: dotnet nuget push "./TakasakiStudio.Lina.Utils/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "nuget.org"
+      - name: Publish TakasakiStudio.Lina.Database to Nuget
+        run: dotnet nuget push "./TakasakiStudio.Lina.Database/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "nuget.org"
+      - name: Publish TakasakiStudio.Lina.AspNet to Nuget
+        run: dotnet nuget push "./TakasakiStudio.Lina.AspNet/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "nuget.org"
+      - name: Publish TakasakiStudio.Lina to Nuget
+        run: dotnet nuget push "./TakasakiStudio.Lina/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "nuget.org"
