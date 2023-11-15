@@ -1,10 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lina", "Lina\Lina.csproj", "{353D780F-2FB1-48AC-85CA-BFB8E802E534}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lina.Test", "Lina.Test\Lina.Test.csproj", "{4BC85F77-21B6-4DF4-8CD5-B89D4423A30E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina.AspNet", "TakasakiStudio.Lina.AspNet\TakasakiStudio.Lina.AspNet.csproj", "{E4BDD6E5-AD30-40D3-BE35-6026E3E539EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina.Database", "TakasakiStudio.Lina.Database\TakasakiStudio.Lina.Database.csproj", "{423A3C03-06E8-40EF-90F3-0226F6DB9E31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina.Common", "TakasakiStudio.Lina.Common\TakasakiStudio.Lina.Common.csproj", "{228EDFC8-D549-495F-AFA4-35768F6D065A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina.Utils", "TakasakiStudio.Lina.Utils\TakasakiStudio.Lina.Utils.csproj", "{4FE7BD9C-A2F7-413D-B020-F31007046B0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina.AutoDependencyInjection", "TakasakiStudio.Lina.AutoDependencyInjection\TakasakiStudio.Lina.AutoDependencyInjection.csproj", "{A5B7595B-7CE2-48A2-98FE-7004F9C64E4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,17 +16,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{353D780F-2FB1-48AC-85CA-BFB8E802E534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{353D780F-2FB1-48AC-85CA-BFB8E802E534}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{353D780F-2FB1-48AC-85CA-BFB8E802E534}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{353D780F-2FB1-48AC-85CA-BFB8E802E534}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BC85F77-21B6-4DF4-8CD5-B89D4423A30E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BC85F77-21B6-4DF4-8CD5-B89D4423A30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BC85F77-21B6-4DF4-8CD5-B89D4423A30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BC85F77-21B6-4DF4-8CD5-B89D4423A30E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E4BDD6E5-AD30-40D3-BE35-6026E3E539EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E4BDD6E5-AD30-40D3-BE35-6026E3E539EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4BDD6E5-AD30-40D3-BE35-6026E3E539EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4BDD6E5-AD30-40D3-BE35-6026E3E539EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{423A3C03-06E8-40EF-90F3-0226F6DB9E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{423A3C03-06E8-40EF-90F3-0226F6DB9E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{423A3C03-06E8-40EF-90F3-0226F6DB9E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{423A3C03-06E8-40EF-90F3-0226F6DB9E31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{228EDFC8-D549-495F-AFA4-35768F6D065A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{228EDFC8-D549-495F-AFA4-35768F6D065A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{228EDFC8-D549-495F-AFA4-35768F6D065A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{228EDFC8-D549-495F-AFA4-35768F6D065A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FE7BD9C-A2F7-413D-B020-F31007046B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FE7BD9C-A2F7-413D-B020-F31007046B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FE7BD9C-A2F7-413D-B020-F31007046B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FE7BD9C-A2F7-413D-B020-F31007046B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B7595B-7CE2-48A2-98FE-7004F9C64E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B7595B-7CE2-48A2-98FE-7004F9C64E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B7595B-7CE2-48A2-98FE-7004F9C64E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B7595B-7CE2-48A2-98FE-7004F9C64E4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -15,16 +15,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Config.Net" Version="5.1.5" />
-      <PackageReference Include="FluentValidation" Version="11.8.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0-rc.1.23419.6" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0-rc.2.23479.6" />
-      <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0-rc.2.23479.6" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     </ItemGroup>
 
 
     <ItemGroup>
         <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Folder Include="AutoDependencyInjection\" />
     </ItemGroup>
 
 </Project>
