@@ -11,7 +11,7 @@ public static class DateTimeExtensions
     /// <param name="dateTime">Current datetime</param>
     /// <returns>Converted datetime</returns>
     public static DateTime GetZeroHours(this DateTime dateTime) =>
-        new(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
+        new(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0, DateTimeKind.Utc);
 
     /// <summary>
     /// Convert datetime into day with time in 23 hours and 59 minutes and 59 seconds
@@ -19,7 +19,7 @@ public static class DateTimeExtensions
     /// <param name="dateTime">Current datetime</param>
     /// <returns>Converted datetime</returns>
     public static DateTime GetLastHour(this DateTime dateTime) =>
-        new (dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
+        new (dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59, DateTimeKind.Utc);
 
     /// <summary>
     /// Clear millis seconds from datetime
@@ -27,7 +27,7 @@ public static class DateTimeExtensions
     /// <param name="dateTime">Current datetime</param>
     /// <returns>Converted datetime</returns>
     public static DateTime TrimMillis(this DateTime dateTime) => new(dateTime.Year, dateTime.Month, dateTime.Day,
-        dateTime.Hour, dateTime.Minute, dateTime.Second);
+        dateTime.Hour, dateTime.Minute, dateTime.Second, DateTimeKind.Utc);
 
     /// <summary>
     /// Specifies DateTimeKind of the provided DateTime to Utc
