@@ -9,7 +9,7 @@ namespace TakasakiStudio.Lina.AutoDependencyInjection.Attributes;
 /// }
 /// </code>
 /// <code>
-/// [HttpClient(typeof(IFooHttpClient))]
+/// [HttpClient&lt;IFooHttpClient&gt;]
 /// class FooHttpClient : IFooHttpClient {
 ///     /*...*/
 /// }

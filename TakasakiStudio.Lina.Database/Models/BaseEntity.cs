@@ -11,6 +11,11 @@ public abstract class BaseEntity<TPkType>
     /// </summary>
     public TPkType Id { get; set; } = default!;
     
+    /// <summary>
+    /// Create a clone of value
+    /// </summary>
+    /// <typeparam name="T">Value type</typeparam>
+    /// <returns></returns>
     public T Clone<T>()
         where T: BaseEntity<TPkType>
     {

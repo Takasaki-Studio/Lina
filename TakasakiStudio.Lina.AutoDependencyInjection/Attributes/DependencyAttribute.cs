@@ -9,7 +9,7 @@ namespace TakasakiStudio.Lina.AutoDependencyInjection.Attributes;
 /// }
 /// </code>
 /// <code>
-/// [Dependency(typeof(IFooDependency), LifeTime.Scoped)]
+/// [Dependency&lt;IFooDependency&gt;(LifeTime.Scoped)]
 /// class FooDependency : IFooDependency {
 ///     /*...*/
 /// }

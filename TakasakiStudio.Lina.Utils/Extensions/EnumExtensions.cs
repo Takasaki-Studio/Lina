@@ -4,6 +4,11 @@ namespace TakasakiStudio.Lina.Utils.Extensions;
 
 public static class EnumExtensions
 {
+    /// <summary>
+    /// Convert enum as option
+    /// </summary>
+    /// <typeparam name="T">Enum type</typeparam>
+    /// <returns>Options</returns>
     public static IDictionary<string, string> GetOptions<T>()
         where T : struct, Enum
     {
@@ -23,12 +28,24 @@ public static class EnumExtensions
             .ToDictionary(x => x.Item2.ToString()!, y => y.Item1.ToString());
     }
 
+    /// <summary>
+    /// Get enum value
+    /// </summary>
+    /// <param name="value">Enum</param>
+    /// <typeparam name="T">Enum type</typeparam>
+    /// <returns>Value</returns>
     public static string GetValue<T>(this T? value)
         where T : struct, Enum
     {
         return value is null ? "" : Convert.ToInt32(value).ToString();
     }
 
+    /// <summary>
+    /// Unify flag list to unique value
+    /// </summary>
+    /// <param name="list">Flag list</param>
+    /// <typeparam name="T">Enum type</typeparam>
+    /// <returns>Enum value</returns>
     public static T ToFlags<T>(this IEnumerable<T> list)
         where T : struct, Enum
     {
@@ -46,6 +63,12 @@ public static class EnumExtensions
         return (T)Enum.ToObject(typeof(T), Convert.ChangeType(result, underlyingType));
     }
 
+    /// <summary>
+    /// Split enum flag into list
+    /// </summary>
+    /// <param name="flag">Enum value</param>
+    /// <typeparam name="T">Enum type</typeparam>
+    /// <returns>Flag list</returns>
     public static IEnumerable<T> ToEnumerable<T>(this T flag)
         where T : struct, Enum
     {

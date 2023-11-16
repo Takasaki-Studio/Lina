@@ -15,16 +15,27 @@ public abstract class BaseValidateBaseEntity<TModel, TValidationClass, TPkKey> :
     IBaseValidate<TModel, TValidationClass>
 where TValidationClass: IValidator<TModel>
 {
+    /// <summary>
+    /// Validate entity and throw if invalid
+    /// </summary>
     public virtual async ValueTask Validate()
     {
         await GetBaseImplementationInstance().BaseValidate();
     }
 
+    /// <summary>
+    /// Get validation errors
+    /// </summary>
+    /// <returns>Errors</returns>
     public virtual async Task<ValidationResult> GetErrors()
     {
         return await GetBaseImplementationInstance().BaseGetErrors();
     }
 
+    /// <summary>
+    /// Entity is valid
+    /// </summary>
+    /// <returns>Is valid</returns>
     public virtual async ValueTask<bool> IsValid()
     {
         return await GetBaseImplementationInstance().BaseIsValid();
