@@ -9,7 +9,7 @@ namespace TakasakiStudio.Lina.AutoDependencyInjection.Attributes;
 /// }
 /// </code>
 /// <code>
-/// [Adapter(typeof(IFooAdapter))]
+/// [Adapter&lt;IFooAdapter&gt;]
 /// class FooAdapter : IFooAdapter {
 ///     /*...*/
 /// }

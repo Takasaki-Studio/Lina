@@ -9,7 +9,7 @@ namespace TakasakiStudio.Lina.AutoDependencyInjection.Attributes;
 /// }
 /// </code>
 /// <code>
-/// [Middleware(typeof(IFooMiddleware))]
+/// [Middleware&lt;IFooMiddleware&gt;]
 /// class FooMiddleware : IFooMiddleware {
 ///     /*...*/
 /// }
