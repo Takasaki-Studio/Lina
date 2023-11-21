@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>2.0.0-rc.3.1</Version>
+        <Version>2.0.0-rc.3.2</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>TakasakiStudio.Lina.Database</PackageId>
         <Title>TakasakiStudio.Lina.Database</Title>
