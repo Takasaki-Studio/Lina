@@ -27,12 +27,12 @@
         <None Include="..\README.md" Pack="true" PackagePath=""/>
     </ItemGroup>
 
-<!--    <ItemGroup>-->
-<!--        <PackageReference Include="TakasakiStudio.Lina.AspNet" Version="*" />-->
-<!--        <PackageReference Include="TakasakiStudio.Lina.AutoDependencyInjection" Version="*" />-->
-<!--        <PackageReference Include="TakasakiStudio.Lina.Common" Version="*" />-->
-<!--        <PackageReference Include="TakasakiStudio.Lina.Database" Version="*" />-->
-<!--        <PackageReference Include="TakasakiStudio.Lina.Utils" Version="*" />-->
-<!--    </ItemGroup>-->
+    <ItemGroup>
+        <PackageReference Include="TakasakiStudio.Lina.AspNet" Version="*" />
+        <PackageReference Include="TakasakiStudio.Lina.AutoDependencyInjection" Version="*" />
+        <PackageReference Include="TakasakiStudio.Lina.Common" Version="*" />
+        <PackageReference Include="TakasakiStudio.Lina.Database" Version="*" />
+        <PackageReference Include="TakasakiStudio.Lina.Utils" Version="*" />
+    </ItemGroup>
 
 </Project>
