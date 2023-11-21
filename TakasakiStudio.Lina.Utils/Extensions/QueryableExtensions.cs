@@ -13,7 +13,7 @@ public static class QueryableExtensions
     /// <param name="pageSize">Page size</param>
     /// <typeparam name="T">Model type</typeparam>
     /// <returns>Query execution</returns>
-    public static IQueryable<T> Paginate<T>(this IQueryable<T> query, int page, int pageSize)
+    public static IQueryable<T> Paginate<T>(this IQueryable<T> query, int page, int pageSize = 20)
     {
         if (page == 0) page = 1;
 

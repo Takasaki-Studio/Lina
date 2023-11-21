@@ -9,7 +9,7 @@ namespace TakasakiStudio.Lina.AutoDependencyInjection.Attributes;
 /// }
 /// </code>
 /// <code>
-/// [Service(typeof(IFooService))]
+/// [Service&lt;IFooService&gt;]
 /// class FooService : IFooService {
 ///     /*...*/
 /// }

@@ -9,7 +9,7 @@ namespace TakasakiStudio.Lina.AutoDependencyInjection.Attributes;
 /// }
 /// </code>
 /// <code>
-/// [Repository(typeof(IFooRepository))]
+/// [Repository&lt;IFooRepository&gt;]
 /// class FooRepository : IFooRepository {
 ///     /*...*/
 /// }

@@ -24,9 +24,9 @@ A framework to simplify application creation by improving dependency injection, 
 
 ```csharp
 using Config.Net;
-using Lina.AutoDependencyInjection;
-using Lina.AutoDependencyInjection.Attributes;
-using Lina.LoaderConfig;
+using TakasakiStudio.Lina.AutoDependencyInjection;
+using TakasakiStudio.Lina.AutoDependencyInjection.Attributes;
+using TakasakiStudio.Lina.Utils.LoaderConfig;
 using Microsoft.Extensions.DependencyInjection;
 
 var serviceCollection = new ServiceCollection();
@@ -43,7 +43,7 @@ public interface IFooService
     public void PrintAppName();
 }
 
-[Service(typeof(IFooService))]
+[Service<IFooService>]
 public class FooService : IFooService
 {
     private readonly IAppConfig _appConfig;
@@ -70,7 +70,7 @@ public interface IAppConfig
 
 ```csharp
 using Config.Net;
-using Lina.LoaderConfig;
+using TakasakiStudio.Lina.Utils.LoaderConfig;
 using Microsoft.Extensions.DependencyInjection;
 
 var serviceCollection = new ServiceCollection();
@@ -94,9 +94,9 @@ public interface IAppConfig
 
 ```csharp
 using Config.Net;
-using Lina.Database;
-using Lina.Database.Models;
-using Lina.LoaderConfig;
+using TakasakiStudio.Lina.Database;
+using TakasakiStudio.Lina.Database.Models;
+using TakasakiStudio.Lina.Utils.LoaderConfig;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.DependencyInjection;
@@ -134,8 +134,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
 ```csharp
 using FluentValidation;
-using Lina.Database.Models;
-using Lina.ViewModels;
+using TakasakiStudio.Lina.Common;
+using TakasakiStudio.Lina.Database.Models;
 
 var user = new User()
 {
@@ -166,7 +166,7 @@ public class UserValidation : AbstractValidator<User>
     }
 }
 
-public record UserViewModel() : BaseViewModel<UserViewModel, UserViewModelValidation>
+public record UserViewModel() : BaseValidationRecord<UserViewModel, UserViewModelValidation>
 {
     public string Name { get; set; } = string.Empty;
 }
@@ -185,16 +185,17 @@ public class UserViewModelValidation : AbstractValidator<UserViewModel>
 ```csharp
 using Config.Net;
 using FluentValidation;
-using Lina.Database;
-using Lina.Database.Interfaces;
-using Lina.Database.Models;
-using Lina.Database.Repositories;
-using Lina.AutoDependencyInjection.Attributes;
-using Lina.LoaderConfig;
-using Lina.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.DependencyInjection;
+using TakasakiStudio.Lina.AutoDependencyInjection;
+using TakasakiStudio.Lina.AutoDependencyInjection.Attributes;
+using TakasakiStudio.Lina.Common;
+using TakasakiStudio.Lina.Database;
+using TakasakiStudio.Lina.Database.Interfaces;
+using TakasakiStudio.Lina.Database.Models;
+using TakasakiStudio.Lina.Database.Repositories;
+using TakasakiStudio.Lina.Utils.LoaderConfig;
 
 var serviceCollection = new ServiceCollection();
 
@@ -204,7 +205,7 @@ serviceCollection.AddLinaDbContext<Program>((builder, assembly) =>
     builder.UseMySql(config.DatabaseUrl, ServerVersion.AutoDetect(config.DatabaseUrl),
         optionsBuilder => optionsBuilder.MigrationsAssembly(assembly)));
 
-public interface IAppConfig 
+public interface IAppConfig
 {
     [Option(DefaultValue = "Server=localhost;Database=test;User Id=root;Password=root;")]
     public string DatabaseUrl { get; }
@@ -216,7 +217,7 @@ public class User : BaseValidateBaseEntity<User, UserValidation, int>
 
     public static implicit operator User(UserViewModel viewModel)
     {
-        return new User()
+        return new User
         {
             Name = viewModel.Name
         };
@@ -224,7 +225,7 @@ public class User : BaseValidateBaseEntity<User, UserValidation, int>
 
     public static implicit operator UserViewModel(User user)
     {
-        return new UserViewModel()
+        return new UserViewModel
         {
             Name = user.Name
         };
@@ -249,7 +250,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     }
 }
 
-public record UserViewModel() : BaseViewModel<UserViewModel, UserViewModelValidation>
+public record UserViewModel : BaseValidationRecord<UserViewModel, UserViewModelValidation>
 {
     public string Name { get; set; } = string.Empty;
 }
@@ -266,7 +267,7 @@ public interface IUserRepository : IBaseRepository<User, int>
 {
 }
 
-[Repository(typeof(IUserRepository))]
+[Repository<IUserRepository>]
 public class UserRepository : BaseRepository<User, int>, IUserRepository
 {
     public UserRepository(DbContext dbContext) : base(dbContext)
@@ -278,7 +279,7 @@ public interface IUserService
 {
 }
 
-[Service(typeof(IUserService))]
+[Service<IUserService>]
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
@@ -290,11 +291,8 @@ public class UserService : IUserService
 
     public async Task<UserViewModel?> Add(UserViewModel userViewModel)
     {
-        if (!await userViewModel.IsValid())
-        {
-            throw new Exception("Not valid");
-        }
-        
+        if (!await userViewModel.IsValid()) throw new Exception("Not valid");
+
         User user = userViewModel;
         await user.Validate();
 
@@ -311,4 +309,3 @@ public class UserService : IUserService
 - [Config.Net](https://github.com/aloneguid/config)
 - [FluentValidation](https://docs.fluentvalidation.net/en/latest/)
 - [EntityFramework](https://learn.microsoft.com/en-us/ef/core/)
-- [AutoMapper](https://docs.automapper.org/en/stable/) (Obsolete)
