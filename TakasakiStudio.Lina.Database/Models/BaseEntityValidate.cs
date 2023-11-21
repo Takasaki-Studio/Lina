@@ -10,7 +10,7 @@ namespace TakasakiStudio.Lina.Database.Models;
 /// <typeparam name="TModel">Entity model</typeparam>
 /// <typeparam name="TValidationClass">Entity model validation</typeparam>
 /// <typeparam name="TPkKey">Entity id type</typeparam>
-public abstract class BaseValidateBaseEntity<TModel, TValidationClass, TPkKey> : BaseEntity<TPkKey>,
+public abstract class BaseEntityValidate<TModel, TValidationClass, TPkKey> : BaseEntity<TPkKey>,
     IValidate,
     IBaseValidate<TModel, TValidationClass>
 where TValidationClass: IValidator<TModel>
