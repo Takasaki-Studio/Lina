@@ -9,7 +9,7 @@ public abstract class BaseEntity<TPkType>
     /// <summary>
     /// Entity id
     /// </summary>
-    public required TPkType Id { get; set; } = default!;
+    public TPkType Id { get; set; } = default!;
     
     /// <summary>
     /// Create a clone of value
