@@ -16,9 +16,9 @@ jobs:
     runs-on: ${{ matrix.platform }}
     
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ matrix.version }}
       - name: Login into Github Packeges
@@ -37,9 +37,9 @@ jobs:
     runs-on: ${{ matrix.platform }}
     
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ matrix.version }}
       - name: Login into Github Packeges
@@ -56,9 +56,9 @@ jobs:
     if: github.ref_name == 'dotnet8' && github.event_name == 'push'
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
@@ -87,9 +87,9 @@ jobs:
     if: github.ref_name == 'dotnet8' && github.event_name == 'push'
     
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
