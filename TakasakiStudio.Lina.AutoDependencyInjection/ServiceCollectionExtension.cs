@@ -14,11 +14,13 @@ public static class ServiceCollectionExtension
     /// <summary>
     ///  Auto inject class with attributes
     ///  [<see cref="services"/>]
+    ///  [<see cref="AdapterAttribute{T}"/>]
     ///  [<see cref="DependencyAttribute{T}"/>]
-    ///  [<see cref="AdapterAttribute"/>]
     ///  [<see cref="DependencyAttribute"/>]
-    ///  [<see cref="HttpClientAttribute"/>]
+    ///  [<see cref="HttpClientAttribute{T}"/>]
     ///  [<see cref="MiddlewareAttribute"/>]
+    ///  [<see cref="RepositoryAttribute{T}"/>]
+    ///  [<see cref="ServiceAttribute{T}"/>]
     ///  into dependency injection
     /// </summary>
     /// <param name="services">Service collection</param>
