@@ -5,6 +5,28 @@ namespace TakasakiStudio.Lina.Utils.Extensions;
 public static class EnumExtensions
 {
     /// <summary>
+    /// Get enum description or string name
+    /// </summary>
+    /// <param name="value">Enum value</param>
+    /// <typeparam name="T">Enum type</typeparam>
+    /// <returns>Description</returns>
+    public static string? GetDescription<T>(this T value) where T : struct
+    {
+        var type = typeof(T);
+
+        var name = Enum.GetName(type, value);
+
+        if (string.IsNullOrWhiteSpace(name))
+            return value.ToString();
+        
+        var descriptionAttribute =
+            (DescriptionAttribute[]?)type.GetField(name)
+                ?.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+        return descriptionAttribute?.FirstOrDefault()?.Description ?? value.ToString();
+    }
+    
+    /// <summary>
     /// Convert enum as option
     /// </summary>
     /// <typeparam name="T">Enum type</typeparam>
