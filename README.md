@@ -153,7 +153,7 @@ await user.Validate();
 
 Console.WriteLine("Valid");
 
-public class User : BaseValidateBaseEntity<User, UserValidation, int>
+public class User : BaseEntityValidate<User, UserValidation, int>
 {
     public string Name { get; set; } = string.Empty;
 }
