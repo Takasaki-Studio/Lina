@@ -19,6 +19,9 @@ A framework to simplify application creation by improving dependency injection, 
   - Life time configurable
   - Easy manipulation
   - Services, Repositories, HttpClient and more types of preconfigured dependencies
+- Asp Net Core
+  - Blazor render component in controller
+  - Clear hosted lifecycle
 
 ## Example simple usage
 
@@ -300,6 +303,37 @@ public class UserService : IUserService
         await _userRepository.Commit();
 
         return user;
+    }
+}
+```
+
+## Blazor components
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using TakasakiStudio.Lina.AspNet.Controllers;
+
+[Controller]
+public class AuthController() : PageController
+{
+    [HttpGet]
+    public IActionResult Login()
+    {
+        return RenderComponent<LoginPage>(); // LoginPage is a Blazor component
+    }
+}
+```
+
+## Clear hosted lifecycle
+
+```csharp
+using TakasakiStudio.Lina.AspNet.Workers;
+
+public class MyWorker : AbstractHostedLifecycleService
+{
+    public override Task StartingAsync(CancellationToken cancellationToken)
+    {
+        /*...*/
     }
 }
 ```
