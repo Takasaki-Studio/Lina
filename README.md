@@ -22,6 +22,7 @@ A framework to simplify application creation by improving dependency injection, 
 - Asp Net Core
   - Blazor render component in controller
   - Clear hosted lifecycle
+  - File version provider
 
 ## Example simple usage
 
@@ -343,3 +344,7 @@ public class MyWorker : AbstractHostedLifecycleService
 - [Config.Net](https://github.com/aloneguid/config)
 - [FluentValidation](https://docs.fluentvalidation.net/en/latest/)
 - [EntityFramework](https://learn.microsoft.com/en-us/ef/core/)
+
+## License
+The entire project, except for the file [FileVersionProvider.cs](TakasakiStudio.Lina.AspNet/Providers/FileVersionProvider.cs) is licensed under the [The Unlicense license](LICENSE).
+The file FileVersionProvider.cs was copied from [Asp.NET Core](https://github.com/dotnet/aspnetcore/blob/6dfaf9e2cff6cfa3aab0b7842fe02fe9f71e0f60/src/Mvc/Mvc.Razor/src/Infrastructure/DefaultFileVersionProvider.cs) under the MIT License.
