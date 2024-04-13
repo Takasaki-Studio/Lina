@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>2.0.9</Version>
+        <Version>2.0.10</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>TakasakiStudio.Lina.Utils</PackageId>
         <Title>TakasakiStudio.Lina.Utils</Title>
@@ -20,7 +20,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Config.Net" Version="5.1.5" />
+      <PackageReference Include="Config.Net" Version="5.2.0" />
     </ItemGroup>
 
     <ItemGroup>
