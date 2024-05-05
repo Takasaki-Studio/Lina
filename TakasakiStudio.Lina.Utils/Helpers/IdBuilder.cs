@@ -1,6 +1,6 @@
 ﻿namespace TakasakiStudio.Lina.Utils.Helpers;
 
-public static class Id
+public static class IdBuilder
 {
     public static string Generate()
     {
