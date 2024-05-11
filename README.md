@@ -145,7 +145,9 @@ using TakasakiStudio.Lina.Database.Models;
 
 var user = new User()
 {
-    Name = ""
+    Name = "",
+    Cpf = "",
+    Cnpj = "",
 };
 
 if (!await user.IsValid())
