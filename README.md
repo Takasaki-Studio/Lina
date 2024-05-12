@@ -15,6 +15,7 @@ A framework to simplify application creation by improving dependency injection, 
   - Fluent api
   - Reliable library
   - Easy usage
+  - CPF and CNPJ validators
 - Dependency Injection
   - Life time configurable
   - Easy manipulation
@@ -139,11 +140,14 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 ```csharp
 using FluentValidation;
 using TakasakiStudio.Lina.Common;
+using TakasakiStudio.Lina.Common.Extensions;
 using TakasakiStudio.Lina.Database.Models;
 
 var user = new User()
 {
-    Name = ""
+    Name = "",
+    Cpf = "",
+    Cnpj = "",
 };
 
 if (!await user.IsValid())
@@ -152,6 +156,8 @@ if (!await user.IsValid())
 }
 
 user.Name = "Foo";
+user.Cpf = "349.306.930-80";
+user.Cnpj = "82.099.001/0001-08";
 
 await user.Validate();
 
@@ -159,7 +165,9 @@ Console.WriteLine("Valid");
 
 public class User : BaseEntityValidate<User, UserValidation, int>
 {
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
+    public required string Cpf { get; set; }
+    public required string Cnpj { get; set; }
 }
 
 public class UserValidation : AbstractValidator<User>
@@ -167,19 +175,21 @@ public class UserValidation : AbstractValidator<User>
     public UserValidation()
     {
         RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.Cpf).ValidCpf();
+        RuleFor(x => x.Cnpj).ValidCnpj();
     }
 }
 
-public record UserViewModel() : BaseValidationRecord<UserViewModel, UserViewModelValidation>
-{
-    public string Name { get; set; } = string.Empty;
-}
+public record UserViewModel(string Name, string Cpf, string Cnpj)
+    : BaseValidationRecord<UserViewModel, UserViewModelValidation>;
 
 public class UserViewModelValidation : AbstractValidator<UserViewModel>
 {
     public UserViewModelValidation()
     {
         RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.Cpf).ValidCpf();
+        RuleFor(x => x.Cnpj).ValidCnpj();
     }
 }
 ```
