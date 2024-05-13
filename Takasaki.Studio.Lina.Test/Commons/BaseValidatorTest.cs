@@ -21,8 +21,8 @@ public class BaseValidatorTest
 public class ExampleModel : BaseValidator<ExampleModel>
 {
     public required string Test { get; set; }
-    
-    public override void SetupValidator(LinaAbstractValidator<ExampleModel> rules)
+
+    protected override void SetupValidator(LinaAbstractValidator<ExampleModel> rules)
     {
         rules.RuleFor(x => x.Test).NotEmpty().NotNull();
     }
