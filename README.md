@@ -208,7 +208,7 @@ public interface IAppConfig
     public string DatabaseUrl { get; }
 }
 
-public class User : BaseEntityValidate<User, int>
+public class User : BaseEntityValidated<User, int>
 {
     public string Name { get; set; } = string.Empty;
     
