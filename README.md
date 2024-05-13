@@ -163,36 +163,19 @@ await user.Validate();
 
 Console.WriteLine("Valid");
 
-public class User : BaseEntityValidate<User, UserValidation, int>
+public class User : BaseValidator<User>
 {
     public required string Name { get; set; }
     public required string Cpf { get; set; }
     public required string Cnpj { get; set; }
-}
-
-public class UserValidation : AbstractValidator<User>
-{
-    public UserValidation()
+    
+    protected override void SetupValidator(LinaAbstractValidator<User> rules)
     {
-        RuleFor(x => x.Name).NotEmpty();
-        RuleFor(x => x.Cpf).ValidCpf();
-        RuleFor(x => x.Cnpj).ValidCnpj();
+        rules.RuleFor(x => x.Name).NotEmpty();
+        rules.RuleFor(x => x.Cpf).ValidCpf();
+        rules.RuleFor(x => x.Cnpj).ValidCnpj();
     }
 }
-
-public record UserViewModel(string Name, string Cpf, string Cnpj)
-    : BaseValidationRecord<UserViewModel, UserViewModelValidation>;
-
-public class UserViewModelValidation : AbstractValidator<UserViewModel>
-{
-    public UserViewModelValidation()
-    {
-        RuleFor(x => x.Name).NotEmpty();
-        RuleFor(x => x.Cpf).ValidCpf();
-        RuleFor(x => x.Cnpj).ValidCnpj();
-    }
-}
-```
 
 ## Dependency injection example usage
 
@@ -225,9 +208,14 @@ public interface IAppConfig
     public string DatabaseUrl { get; }
 }
 
-public class User : BaseValidateBaseEntity<User, UserValidation, int>
+public class User : BaseEntityValidate<User, int>
 {
     public string Name { get; set; } = string.Empty;
+    
+    protected override void SetupValidator(LinaAbstractValidator<ExampleModel> rules)
+    {
+        rules.RuleFor(x => x.Name).NotEmpty();
+    }
 
     public static implicit operator User(UserViewModel viewModel)
     {
@@ -246,14 +234,6 @@ public class User : BaseValidateBaseEntity<User, UserValidation, int>
     }
 }
 
-public class UserValidation : AbstractValidator<User>
-{
-    public UserValidation()
-    {
-        RuleFor(x => x.Name).NotEmpty();
-    }
-}
-
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
@@ -264,17 +244,9 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     }
 }
 
-public record UserViewModel : BaseValidationRecord<UserViewModel, UserViewModelValidation>
+public record UserViewModel
 {
     public string Name { get; set; } = string.Empty;
-}
-
-public class UserViewModelValidation : AbstractValidator<UserViewModel>
-{
-    public UserViewModelValidation()
-    {
-        RuleFor(x => x.Name).NotEmpty();
-    }
 }
 
 public interface IUserRepository : IBaseRepository<User, int>
@@ -305,8 +277,6 @@ public class UserService : IUserService
 
     public async Task<UserViewModel?> Add(UserViewModel userViewModel)
     {
-        if (!await userViewModel.IsValid()) throw new Exception("Not valid");
-
         User user = userViewModel;
         await user.Validate();
 

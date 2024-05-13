@@ -44,6 +44,24 @@ public abstract class BaseValidator<TModel> : IValidate
         return (await GetErrors()).IsValid;
     }
 
+    /// <summary>
+    /// Setups the validator rules
+    /// </summary>
+    /// <param name="rules">The validator instance, used to configure the validation rules</param>
+    /// <see href="https://docs.fluentvalidation.net/en/latest/index.html">Fluent Validation documentation</see>
+    /// <example>
+    /// <code language="cs">
+    /// public class ExampleModel : BaseValidator&lt;ExampleModel>
+    /// {
+    ///    public required string Test { get; set; }
+    ///
+    ///    protected override void SetupValidator(LinaAbstractValidator&lt;ExampleModel> rules)
+    ///    {
+    ///        rules.RuleFor(x => x.Test).NotEmpty().NotNull();
+    ///    }
+    /// }
+    /// </code>
+    /// </example>
     protected abstract void SetupValidator(LinaAbstractValidator<TModel> rules);
 
     private void InstanceValidator()
