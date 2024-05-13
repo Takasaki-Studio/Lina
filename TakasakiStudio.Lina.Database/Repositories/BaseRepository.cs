@@ -12,7 +12,7 @@ namespace TakasakiStudio.Lina.Database.Repositories;
 /// <typeparam name="TEntity">Entity</typeparam>
 /// <typeparam name="TPkType">Entity id</typeparam>
 public abstract class BaseRepository<TEntity, TPkType> : IBaseRepository<TEntity, TPkType>
-    where TEntity : BaseEntity<TPkType>
+    where TEntity : class, IBaseEntity<TPkType>
 {
     protected readonly DbContext DbContext;
 
