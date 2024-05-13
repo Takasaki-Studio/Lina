@@ -44,7 +44,7 @@ public abstract class BaseValidator<TModel> : IValidate
         return (await GetErrors()).IsValid;
     }
 
-    public abstract void SetupValidator(LinaAbstractValidator<TModel> rules);
+    protected abstract void SetupValidator(LinaAbstractValidator<TModel> rules);
 
     private void InstanceValidator()
     {
