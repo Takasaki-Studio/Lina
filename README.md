@@ -163,7 +163,7 @@ await user.Validate();
 
 Console.WriteLine("Valid");
 
-public class User : BaseValidator<User>
+public class User : BaseValidated<User>
 {
     public required string Name { get; set; }
     public required string Cpf { get; set; }

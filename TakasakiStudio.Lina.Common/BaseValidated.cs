@@ -8,11 +8,11 @@ namespace TakasakiStudio.Lina.Common;
 /// Base class to view model with basic validation using <a href="https://docs.fluentvalidation.net/en/latest/">Fluent Validation</a>
 /// </summary>
 /// <typeparam name="TModel">Self ref class</typeparam>
-public abstract class BaseValidator<TModel> : IValidate
+public abstract class BaseValidated<TModel> : IValidate
 {
     private LinaAbstractValidator<TModel>? _validator;
 
-    protected BaseValidator()
+    protected BaseValidated()
     {
         InstanceValidator();
     }
@@ -51,7 +51,7 @@ public abstract class BaseValidator<TModel> : IValidate
     /// <see href="https://docs.fluentvalidation.net/en/latest/index.html">Fluent Validation documentation</see>
     /// <example>
     /// <code language="cs">
-    /// public class ExampleModel : BaseValidator&lt;ExampleModel>
+    /// public class ExampleModel : BaseValidated&lt;ExampleModel>
     /// {
     ///    public required string Test { get; set; }
     ///

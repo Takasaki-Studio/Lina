@@ -4,7 +4,7 @@ using FluentValidation;
 namespace TakasakiStudio.Lina.Test.Commons;
 
 [TestClass]
-public class BaseValidatorTest
+public class BaseValidatedTest
 {
     [TestMethod]
     public async Task ValidateValidatorWorks()
@@ -18,7 +18,7 @@ public class BaseValidatorTest
     }
 }
 
-public class ExampleModel : BaseValidator<ExampleModel>
+public class ExampleModel : BaseValidated<ExampleModel>
 {
     public required string Test { get; set; }
 
