@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina.AutoDep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina", "TakasakiStudio.Lina\TakasakiStudio.Lina.csproj", "{51F04308-2658-4EF5-AA3A-3126B77040C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Takasaki.Studio.Lina.Test", "Takasaki.Studio.Lina.Test\Takasaki.Studio.Lina.Test.csproj", "{F368617F-1314-4AFB-A8F6-0103A48DA3E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakasakiStudio.Lina.Test", "TakasakiStudio.Lina.Test\TakasakiStudio.Lina.Test.csproj", "{F368617F-1314-4AFB-A8F6-0103A48DA3E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

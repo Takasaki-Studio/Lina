@@ -1,7 +1,7 @@
 ﻿using TakasakiStudio.Lina.Common;
 using FluentValidation;
 
-namespace Takasaki.Studio.Lina.Test.Commons;
+namespace TakasakiStudio.Lina.Test.Commons;
 
 [TestClass]
 public class BaseValidatorTest
