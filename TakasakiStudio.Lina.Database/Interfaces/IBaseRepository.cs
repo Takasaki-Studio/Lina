@@ -10,7 +10,7 @@ namespace TakasakiStudio.Lina.Database.Interfaces;
 /// <typeparam name="TEntity">Entity type</typeparam>
 /// <typeparam name="TPkType">Entity id type</typeparam>
 public interface IBaseRepository<TEntity, in TPkType>
-    where TEntity : BaseEntity<TPkType>
+    where TEntity : IBaseEntity<TPkType>
 {
     /// <summary>
     /// Base function for find by id

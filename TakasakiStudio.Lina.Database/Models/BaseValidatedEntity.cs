@@ -1,18 +1,20 @@
+using TakasakiStudio.Lina.Common;
 using TakasakiStudio.Lina.Database.Interfaces;
 
 namespace TakasakiStudio.Lina.Database.Models;
 
 /// <summary>
-/// Base entity database 
+/// Base entity with validation
 /// </summary>
-/// <typeparam name="TPkType">Entity id type</typeparam>
-public abstract class BaseEntity<TPkType> : IBaseEntity<TPkType>
+/// <typeparam name="TModel">Entity model</typeparam>
+/// <typeparam name="TPkKey">Entity id type</typeparam>
+public abstract class BaseValidatedEntity<TModel, TPkKey> : BaseValidated<TModel>, IBaseEntity<TPkKey>
 {
     /// <summary>
     /// Entity id
     /// </summary>
-    public TPkType Id { get; set; } = default!;
-
+    public TPkKey Id { get; set; } = default!;
+    
     /// <summary>
     /// Create a clone of value
     /// </summary>
