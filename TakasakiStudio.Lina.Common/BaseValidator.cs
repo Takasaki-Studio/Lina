@@ -1,4 +1,3 @@
-using System.Reflection;
 using FluentValidation;
 using FluentValidation.Results;
 using TakasakiStudio.Lina.Common.Interfaces;
@@ -50,14 +49,7 @@ public abstract class BaseValidator<TModel> : IValidate
     private void InstanceValidator()
     {
         var setupValidator = (LinaAbstractValidator<TModel>.ValidationBuilder)SetupValidator;
-
-        _validator = (LinaAbstractValidator<TModel>?)Activator.CreateInstance(
-            type: typeof(LinaAbstractValidator<TModel>),
-            bindingAttr: BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.CreateInstance,
-            binder: null,
-            args: [setupValidator],
-            culture: null,
-            activationAttributes: null);
+        _validator = new LinaAbstractValidator<TModel>(setupValidator);
     }
 
     private TModel GetClassInstance()
