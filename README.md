@@ -176,6 +176,7 @@ public class User : BaseValidated<User>
         rules.RuleFor(x => x.Cnpj).ValidCnpj();
     }
 }
+```
 
 ## Dependency injection example usage
 
