@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>2.1.1</Version>
+        <Version>2.1.2</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>TakasakiStudio.Lina.Database</PackageId>
         <Title>TakasakiStudio.Lina.Database</Title>
@@ -20,7 +20,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
     </ItemGroup>
 
     <ItemGroup>
