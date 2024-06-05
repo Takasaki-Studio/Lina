@@ -20,28 +20,37 @@ public abstract class BaseValidated<TModel> : IValidate
     /// <summary>
     /// Validate view model with class validation and throw exception if failure
     /// </summary>
+    /// <param name="rules">Rule sets from validator</param>
     /// <exception cref="ValidationException">Failure validation information</exception>
-    public virtual async ValueTask Validate()
+    public virtual async ValueTask Validate(params string[] rules)
     {
-        await _validator!.ValidateAndThrowAsync(GetClassInstance());
+        await _validator!.ValidateAsync(GetClassInstance(), strategy =>
+        {
+            strategy.ThrowOnFailures().IncludeRuleSets(rules).IncludeRulesNotInRuleSet();
+        });
     }
 
     /// <summary>
     /// Get validation errors
     /// </summary>
+    /// <param name="rules">Rule sets from validator</param>
     /// <returns>Failure validation information</returns>
-    public virtual async Task<ValidationResult> GetErrors()
+    public virtual async Task<ValidationResult> GetErrors(params string[] rules)
     {
-        return await _validator!.ValidateAsync(GetClassInstance());
+        return await _validator!.ValidateAsync(GetClassInstance(), strategy =>
+        {
+            strategy.IncludeRuleSets(rules).IncludeRulesNotInRuleSet();
+        });
     }
 
     /// <summary>
     /// Verify if validation pass
     /// </summary>
+    /// <param name="rules">Rule sets from validator</param>
     /// <returns>If valid</returns>
-    public virtual async ValueTask<bool> IsValid()
+    public virtual async ValueTask<bool> IsValid(params string[] rules)
     {
-        return (await GetErrors()).IsValid;
+        return (await GetErrors(rules)).IsValid;
     }
 
     /// <summary>
