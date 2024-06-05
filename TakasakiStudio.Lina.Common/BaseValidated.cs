@@ -10,11 +10,11 @@ namespace TakasakiStudio.Lina.Common;
 /// <typeparam name="TModel">Self ref class</typeparam>
 public abstract class BaseValidated<TModel> : IValidate
 {
-    private LinaAbstractValidator<TModel>? _validator;
+    private readonly LinaAbstractValidator<TModel> _validator;
 
     protected BaseValidated()
     {
-        InstanceValidator();
+        _validator = InstanceValidator();
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ public abstract class BaseValidated<TModel> : IValidate
     /// <exception cref="ValidationException">Failure validation information</exception>
     public virtual async ValueTask Validate(params string[] rules)
     {
-        await _validator!.ValidateAsync(GetClassInstance(), strategy =>
+        await _validator.ValidateAsync(GetClassInstance(), strategy =>
         {
             strategy.ThrowOnFailures().IncludeRuleSets(rules).IncludeRulesNotInRuleSet();
         });
@@ -37,7 +37,7 @@ public abstract class BaseValidated<TModel> : IValidate
     /// <returns>Failure validation information</returns>
     public virtual async Task<ValidationResult> GetErrors(params string[] rules)
     {
-        return await _validator!.ValidateAsync(GetClassInstance(), strategy =>
+        return await _validator.ValidateAsync(GetClassInstance(), strategy =>
         {
             strategy.IncludeRuleSets(rules).IncludeRulesNotInRuleSet();
         });
@@ -73,10 +73,10 @@ public abstract class BaseValidated<TModel> : IValidate
     /// </example>
     protected abstract void SetupValidator(LinaAbstractValidator<TModel> rules);
 
-    private void InstanceValidator()
+    private LinaAbstractValidator<TModel> InstanceValidator()
     {
         var setupValidator = (LinaAbstractValidator<TModel>.ValidationBuilder)SetupValidator;
-        _validator = new LinaAbstractValidator<TModel>(setupValidator);
+        return new LinaAbstractValidator<TModel>(setupValidator);
     }
 
     private TModel GetClassInstance()
