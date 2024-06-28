@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.2.11</Version>
+        <Version>1.2.12</Version>
         <PackageId>TakasakiStudio.Lina</PackageId>
         <Authors>TakasakiStudio</Authors>
         <RepositoryUrl>https://github.com/Takasaki-Studio/Lina</RepositoryUrl>
@@ -17,8 +17,8 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="13.0.1" />
       <PackageReference Include="Config.Net" Version="5.2.0" />
-      <PackageReference Include="FluentValidation" Version="11.9.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.18" />
+      <PackageReference Include="FluentValidation" Version="11.9.2" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     </ItemGroup>
