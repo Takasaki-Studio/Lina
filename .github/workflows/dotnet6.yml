@@ -26,27 +26,27 @@ jobs:
       - name: Build
         run: dotnet build --no-restore /WarnAsError
   
-#  test:
-#    needs: [ build ]
-#    strategy:
-#      matrix:
-#        platform: [ ubuntu-latest, macos-latest, windows-latest ]
-#        version: [ 6.x, 7.x, 8.x ]
-#    runs-on: ${{ matrix.platform }}
-#    
-#    steps:
-#      - uses: actions/checkout@v4
-#      - name: Setup .NET
-#        uses: actions/setup-dotnet@v4
-#        with:
-#          dotnet-version: ${{ matrix.version }}
-#      - name: Restore dependencies
-#        run: dotnet restore
-#      - name: Test
-#        run: dotnet test --verbosity normal
+  test:
+    needs: [ build ]
+    strategy:
+      matrix:
+        platform: [ ubuntu-latest, macos-latest, windows-latest ]
+        version: [ 6.x ]
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.version }}
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Test
+        run: dotnet test --verbosity normal
 
   publish_github:
-    needs: [ build ]
+    needs: [ test ]
     environment: 'Production'
     runs-on: ubuntu-latest
     if: github.ref_name == 'dotnet6' && github.event_name == 'push'
@@ -67,7 +67,7 @@ jobs:
         run: dotnet nuget push "./Lina/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
 
   publish_nuget:
-    needs: [ build ]
+    needs: [ test ]
     environment: 'Production Nuget'
     runs-on: ubuntu-latest
     if: github.ref_name == 'dotnet6' && github.event_name == 'push'
