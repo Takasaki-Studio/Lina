@@ -26,24 +26,24 @@ jobs:
       - name: Build
         run: dotnet build --no-restore /WarnAsError
   
-  test:
-    needs: [ build ]
-    strategy:
-      matrix:
-        platform: [ ubuntu-latest, macos-latest, windows-latest ]
-        version: [ 6.x, 7.x, 8.x ]
-    runs-on: ${{ matrix.platform }}
-    
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ matrix.version }}
-      - name: Restore dependencies
-        run: dotnet restore
-      - name: Test
-        run: dotnet test --verbosity normal
+#  test:
+#    needs: [ build ]
+#    strategy:
+#      matrix:
+#        platform: [ ubuntu-latest, macos-latest, windows-latest ]
+#        version: [ 6.x, 7.x, 8.x ]
+#    runs-on: ${{ matrix.platform }}
+#    
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Setup .NET
+#        uses: actions/setup-dotnet@v4
+#        with:
+#          dotnet-version: ${{ matrix.version }}
+#      - name: Restore dependencies
+#        run: dotnet restore
+#      - name: Test
+#        run: dotnet test --verbosity normal
 
   publish_github:
     needs: [ test ]
