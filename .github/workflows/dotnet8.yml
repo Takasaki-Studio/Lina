@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Build
     strategy:
       matrix:
         platform: [ ubuntu-latest, macos-latest, windows-latest ]
@@ -29,6 +30,7 @@ jobs:
         run: dotnet build --no-restore /WarnAsError
   
   test:
+    name: Test
     strategy:
       matrix:
         platform: [ ubuntu-latest, macos-latest, windows-latest ]
@@ -49,27 +51,28 @@ jobs:
         run: dotnet test --verbosity normal
   
   sonar:
+    name: Sonar Qube
     needs: [ build, test ]
     runs-on: windows-latest
-    name: Sonar Qube
     
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Set up JDK 17
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
           java-version: 17
+          distribution: 'temurin'
       - name: Cache SonarQube packages
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~\.sonar\cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Cache SonarQube scanner
         id: cache-sonar-scanner
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: .\.sonar\scanner
           key: ${{ runner.os }}-sonar-scanner
@@ -88,6 +91,7 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
   publish_github:
+    name: Publish Github
     needs: [ sonar ]
     environment: 'Production'
     runs-on: ubuntu-latest
@@ -119,6 +123,7 @@ jobs:
         run: dotnet nuget push "./TakasakiStudio.Lina/bin/Release/*.nupkg" --api-key ${{ secrets.SECRET }} --source "github"
 
   publish_nuget:
+    name: Publish Nuget
     needs: [ sonar ]
     environment: 'Production Nuget'
     runs-on: ubuntu-latest
