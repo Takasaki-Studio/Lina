@@ -2,7 +2,7 @@
 
 A framework to simplify application creation by improving dependency injection, validation, config and database handling
 
-[![Quality gate](https://qube.takasaki.studio/api/project_badges/quality_gate?project=Takasaki-Studio_Lina_15f9a6a7-ef3c-4937-88f6-40e4f890d8f1&token=sqb_e3d13032d4593a8be8fecd4a976ada88ba8696ac)](https://qube.takasaki.studio/dashboard?id=Takasaki-Studio_Lina_15f9a6a7-ef3c-4937-88f6-40e4f890d8f1)
+[![Quality Gate Status](https://qube.takasaki.studio/api/project_badges/measure?project=Takasaki-Studio_Lina_15f9a6a7-ef3c-4937-88f6-40e4f890d8f1&metric=alert_status&token=sqb_e3d13032d4593a8be8fecd4a976ada88ba8696ac)](https://qube.takasaki.studio/dashboard?id=Takasaki-Studio_Lina_15f9a6a7-ef3c-4937-88f6-40e4f890d8f1)
 
 ## Features
 
