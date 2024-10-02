@@ -45,7 +45,13 @@ public interface IBaseRepository<TEntity, in TPkType>
     /// </summary>
     /// <param name="expression">Expression filter</param>
     /// <returns>Return number of register by filter</returns>
-    ValueTask<int> CountAll(Expression<Func<TEntity, bool>> expression);
+    ValueTask<int> Count(Expression<Func<TEntity, bool>> expression);
+    
+    /// <summary>
+    /// Base function for get number of registers
+    /// </summary>
+    /// <returns>Return number of register</returns>
+    ValueTask<int> Count();
     
     /// <summary>
     /// Base function for add entity in database
