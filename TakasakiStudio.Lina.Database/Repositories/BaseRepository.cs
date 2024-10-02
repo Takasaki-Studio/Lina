@@ -60,6 +60,16 @@ public abstract class BaseRepository<TEntity, TPkType> : IBaseRepository<TEntity
     {
         return await DbContext.Set<TEntity>().AnyAsync(expression);
     }
+    
+    /// <summary>
+    /// Get number of registers by filter
+    /// </summary>
+    /// <param name="expression">Expression filter</param>
+    /// <returns>Return number of register by filter</returns>
+    public async ValueTask<int> CountAll(Expression<Func<TEntity, bool>> expression)
+    {
+        return await DbContext.Set<TEntity>().CountAsync(expression);
+    }
 
     /// <summary>
     /// Add entity in database
