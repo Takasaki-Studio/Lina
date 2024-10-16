@@ -12,7 +12,7 @@ public static class ThrottleDispatcher
     /// <param name="interval">Interval for throttle</param>
     /// <typeparam name="T">Data type</typeparam>
     /// <returns>Generate function with throttle</returns>
-    public static Action<T> Throttle<T>(Action<T> action, TimeSpan interval)
+    public static Throttle<T> Dispatch<T>(Throttle<T> action, TimeSpan interval)
     {
         Task? task = null;
         var l = new object();

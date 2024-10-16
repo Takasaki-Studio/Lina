@@ -12,7 +12,7 @@ public static class DebounceDispatcher
     /// <param name="interval">Interval for debounce</param>
     /// <typeparam name="T">Data type</typeparam>
     /// <returns>Generate function with debounce</returns>
-    public static Action<T> Debounce<T>(Action<T> action, TimeSpan interval)
+    public static Debounce<T> Dispatch<T>(Debounce<T> action, TimeSpan interval)
     {
         var last = 0;
         return arg =>
