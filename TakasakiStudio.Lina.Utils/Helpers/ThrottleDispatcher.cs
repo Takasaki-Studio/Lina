@@ -15,7 +15,7 @@ public static class ThrottleDispatcher
     public static Throttle<T> Dispatch<T>(Throttle<T> action, TimeSpan interval)
     {
         Task? task = null;
-        var l = new object();
+        var @lock = new object();
         T args;
         return arg =>
         {
@@ -23,11 +23,8 @@ public static class ThrottleDispatcher
             if (task is not null)
                 return;
 
-            lock (l)
+            lock (@lock)
             {
-                if (task is not null)
-                    return;
-
                 task = Task.Delay(interval).ContinueWith(_ =>
                 {
                     action(args);
