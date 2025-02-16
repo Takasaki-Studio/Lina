@@ -93,4 +93,11 @@ public interface IBaseRepository<TEntity, in TPkType>
     /// </summary>
     /// <param name="entity">Entity for remove</param>
     void Detach(TEntity entity);
+
+    /// <summary>
+    /// Add or update entity in database based on Id value
+    /// </summary>
+    /// <param name="entity">Entity to add or update</param>
+    /// <returns>Async operation</returns>
+    public ValueTask AddOrUpdate(TEntity entity);
 }
