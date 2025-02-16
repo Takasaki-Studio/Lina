@@ -60,7 +60,7 @@ public abstract class BaseRepository<TEntity, TPkType> : IBaseRepository<TEntity
     {
         return await DbContext.Set<TEntity>().AnyAsync(expression);
     }
-    
+
     /// <summary>
     /// Get number of registers by filter
     /// </summary>
@@ -70,7 +70,7 @@ public abstract class BaseRepository<TEntity, TPkType> : IBaseRepository<TEntity
     {
         return await DbContext.Set<TEntity>().CountAsync(expression);
     }
-    
+
     /// <summary>
     /// Get number of registers
     /// </summary>
@@ -140,5 +140,21 @@ public abstract class BaseRepository<TEntity, TPkType> : IBaseRepository<TEntity
     public void Detach(TEntity entity)
     {
         DbContext.Entry(entity).State = EntityState.Detached;
+    }
+
+    /// <summary>
+    /// Add or update entity in database based on Id value
+    /// </summary>
+    /// <param name="entity">Entity to add or update</param>
+    /// <returns>Async operation</returns>
+    public async ValueTask AddOrUpdate(TEntity entity)
+    {
+        if (EqualityComparer<TPkType>.Default.Equals(entity.Id))
+        {
+            await Add(entity);
+            return;
+        }
+
+        Update(entity);
     }
 }
