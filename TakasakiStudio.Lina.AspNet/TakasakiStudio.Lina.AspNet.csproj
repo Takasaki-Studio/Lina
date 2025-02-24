@@ -4,7 +4,6 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>2.3.3</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>TakasakiStudio.Lina.AspNet</PackageId>
         <Authors>TakasakiStudio</Authors>
