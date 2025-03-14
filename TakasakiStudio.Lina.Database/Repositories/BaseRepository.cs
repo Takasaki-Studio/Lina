@@ -157,4 +157,14 @@ public abstract class BaseRepository<TEntity, TPkType> : IBaseRepository<TEntity
 
         Update(entity);
     }
+
+    /// <summary>
+    /// Gets the ID of the last inserted entity
+    /// </summary>
+    /// <param name="entity">The entity that was recently inserted</param>
+    /// <returns>The ID value of the inserted entity</returns>
+    public TPkType GetLastInsertedId(TEntity entity)
+    {
+        return DbContext.Entry(entity).Entity.Id;
+    }
 }
