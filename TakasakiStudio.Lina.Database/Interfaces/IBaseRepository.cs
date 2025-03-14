@@ -9,7 +9,7 @@ namespace TakasakiStudio.Lina.Database.Interfaces;
 /// </summary>
 /// <typeparam name="TEntity">Entity type</typeparam>
 /// <typeparam name="TPkType">Entity id type</typeparam>
-public interface IBaseRepository<TEntity, in TPkType>
+public interface IBaseRepository<TEntity, TPkType>
     where TEntity : IBaseEntity<TPkType>
 {
     /// <summary>
@@ -100,4 +100,11 @@ public interface IBaseRepository<TEntity, in TPkType>
     /// <param name="entity">Entity to add or update</param>
     /// <returns>Async operation</returns>
     public ValueTask AddOrUpdate(TEntity entity);
+
+    /// <summary>
+    /// Gets the ID of the last inserted entity
+    /// </summary>
+    /// <param name="entity">The entity that was recently inserted</param>
+    /// <returns>The ID value of the inserted entity</returns>
+    TPkType GetLastInsertedId(TEntity entity);
 }
