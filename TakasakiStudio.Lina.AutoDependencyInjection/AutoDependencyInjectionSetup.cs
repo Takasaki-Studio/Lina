@@ -9,10 +9,10 @@ namespace TakasakiStudio.Lina.AutoDependencyInjection;
 /// <summary>
 /// Auxiliary functions for service builder
 /// </summary>
-public static class ServiceCollectionExtension
+public static class AutoDependencyInjectionSetup
 {
     /// <summary>
-    ///  Auto inject class with attributes
+    ///  Auto-inject class with attributes
     ///  [<see cref="services"/>]
     ///  [<see cref="AdapterAttribute{T}"/>]
     ///  [<see cref="DependencyAttribute{T}"/>]
