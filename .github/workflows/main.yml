@@ -3,9 +3,9 @@ name: .NET 8
 on:
   workflow_dispatch:
   push:
-    branches: [ "dotnet8" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "dotnet8" ]
+    branches: [ "main" ]
 
 jobs:
   build:

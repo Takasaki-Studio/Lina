@@ -2,7 +2,6 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using TakasakiStudio.Lina.Database.Interfaces;
-using TakasakiStudio.Lina.Database.Models;
 
 namespace TakasakiStudio.Lina.Database.Repositories;
 
