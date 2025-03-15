@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-namespace TakasakiStudio.Lina.AspNet.Workers;
+namespace TakasakiStudio.Lina.Utils.Workers;
 
 public abstract class AbstractHostedLifecycleService : IHostedLifecycleService
 {

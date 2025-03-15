@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <PackageReference Include="Config.Net" Version="5.2.1" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.3" />
     </ItemGroup>
 
     <ItemGroup>
