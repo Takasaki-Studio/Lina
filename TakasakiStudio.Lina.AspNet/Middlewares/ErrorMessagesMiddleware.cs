@@ -3,8 +3,8 @@ using System.Reflection;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using TakasakiStudio.Lina.AspNet.Attributes;
 using TakasakiStudio.Lina.AspNet.ViewModels;
+using TakasakiStudio.Lina.Common.Attributes;
 
 namespace TakasakiStudio.Lina.AspNet.Middlewares;
 
