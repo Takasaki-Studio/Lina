@@ -10,15 +10,10 @@ namespace TakasakiStudio.Lina.Database.Repositories;
 /// </summary>
 /// <typeparam name="TEntity">Entity</typeparam>
 /// <typeparam name="TPkType">Entity id</typeparam>
-public abstract class BaseRepository<TEntity, TPkType> : IBaseRepository<TEntity, TPkType>
+public class BaseRepository<TEntity, TPkType>(DbContext dbContext) : IBaseRepository<TEntity, TPkType>
     where TEntity : class, IBaseEntity<TPkType>
 {
-    protected readonly DbContext DbContext;
-
-    protected BaseRepository(DbContext dbContext)
-    {
-        DbContext = dbContext;
-    }
+    protected readonly DbContext DbContext = dbContext;
 
     /// <summary>
     /// Get entity by id
