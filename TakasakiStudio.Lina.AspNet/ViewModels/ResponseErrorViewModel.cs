@@ -4,9 +4,9 @@ using System.Text.Json.Serialization;
 namespace TakasakiStudio.Lina.AspNet.ViewModels;
 
 public record ResponseErrorViewModel(
-    [property: JsonIgnore, JsonPropertyOrder(1)] HttpStatusCode HttpStatusCode, 
-    string Message)
+    [property: JsonIgnore] HttpStatusCode HttpStatusCode, 
+    [property: JsonPropertyOrder(2)] string Message)
 {
-    [JsonPropertyOrder(0)]
+    [JsonPropertyOrder(1)]
     public int Code => (int) HttpStatusCode;
 }
