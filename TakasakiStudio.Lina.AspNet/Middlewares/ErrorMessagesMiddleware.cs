@@ -23,7 +23,7 @@ public class ErrorMessagesMiddleware(ILogger<ErrorMessagesMiddleware> logger) : 
         }
     }
 
-    private static ResponseErrorViewModel FormatException(Exception e)
+    private ResponseErrorViewModel FormatException(Exception e)
     {
         if (e is ValidationException)
         {
@@ -35,6 +35,7 @@ public class ErrorMessagesMiddleware(ILogger<ErrorMessagesMiddleware> logger) : 
 
         if (httpErrorAttribute is null)
         {
+            logger.LogInformation(e, "Unhandled exception throws as response");
             return new ResponseErrorViewModel(HttpStatusCode.InternalServerError, e.Message);
         }
         
