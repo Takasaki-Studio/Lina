@@ -1,7 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using TakasakiStudio.Lina.Config;
+using TakasakiStudio.Lina.Database.Interfaces;
 using TakasakiStudio.Lina.Services;
 using TakasakiStudio.Lina.Services.Interfaces;
+using TakasakiStudio.Lina.Database.Repositories;
 
 namespace TakasakiStudio.Lina;
 
@@ -14,6 +16,7 @@ public static class LinaSetup
         var builder = new LinaSetupConfig<TAppConfig>(collection);
         config(builder);
 
-        collection.AddScoped<IBaseService, BaseService>();
+        collection.AddTransient(typeof(IBaseRepository<,>), typeof(BaseRepository<,>));
+        // collection.AddTransient<IBaseService, BaseService>();
     }
 }

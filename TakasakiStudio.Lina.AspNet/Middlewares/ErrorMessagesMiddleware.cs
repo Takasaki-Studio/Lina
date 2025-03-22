@@ -35,11 +35,17 @@ public class ErrorMessagesMiddleware(ILogger<ErrorMessagesMiddleware> logger) : 
 
         if (httpErrorAttribute is null)
         {
-            logger.LogInformation(e, "Unhandled exception throws as response");
+            logger.LogError(e, "Unhandled exception throws as response");
             return new ResponseErrorViewModel(HttpStatusCode.InternalServerError, e.Message);
         }
         
         var message = httpErrorAttribute.ReplaceMessage ?? e.Message;
+
+        if (httpErrorAttribute.LogException)
+        {
+            logger.LogError(e, "A loggable exception was thrown");
+        }
+        
         return new ResponseErrorViewModel(httpErrorAttribute.StatusCode, message);
     }
 
