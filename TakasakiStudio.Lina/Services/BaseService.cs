@@ -3,7 +3,7 @@ using TakasakiStudio.Lina.Services.Interfaces;
 
 namespace TakasakiStudio.Lina.Services;
 
-public class BaseService<TEntity, TPkType>(IBaseRepository<TEntity, TPkType> baseRepository) : IBaseService
+public class BaseService<TEntity, TPkType> : IBaseService
     where TEntity : class, IBaseEntity<TPkType>
 {
 }
