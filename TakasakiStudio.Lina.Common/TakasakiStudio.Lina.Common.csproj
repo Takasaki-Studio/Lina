@@ -16,7 +16,6 @@
         <Copyright>TakasakiStudio</Copyright>
         <PackageProjectUrl>https://github.com/Takasaki-Studio/Lina</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>2.4.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
