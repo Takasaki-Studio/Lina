@@ -16,11 +16,12 @@
         <Copyright>TakasakiStudio</Copyright>
         <PackageProjectUrl>https://github.com/Takasaki-Studio/Lina</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Version>2.4.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.3" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
     </ItemGroup>
 
     <ItemGroup>

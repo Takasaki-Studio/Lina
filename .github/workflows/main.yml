@@ -95,7 +95,7 @@ jobs:
     needs: [ sonar ]
     environment: 'Production'
     runs-on: ubuntu-latest
-    if: github.ref_name == 'dotnet8' && github.event_name == 'push'
+    if: github.ref_name == 'main' && github.event_name == 'push'
 
     steps:
       - uses: actions/checkout@v4
@@ -127,7 +127,7 @@ jobs:
     needs: [ sonar ]
     environment: 'Production Nuget'
     runs-on: ubuntu-latest
-    if: github.ref_name == 'dotnet8' && github.event_name == 'push'
+    if: github.ref_name == 'main' && github.event_name == 'push'
     
     steps:
       - uses: actions/checkout@v4
