@@ -5,17 +5,20 @@ namespace TakasakiStudio.Lina.Common.Extensions;
 
 public static partial class RuleBuilderExtension
 {
-    public static IRuleBuilder<T, string> ValidCpf<T>(this IRuleBuilder<T, string> ruleBuilder)
-    {
-        return ruleBuilder.Must(BeAValidCpf);
-    }
-    
-    public static IRuleBuilder<T, string> ValidCnpj<T>(this IRuleBuilder<T, string> ruleBuilder)
+    public static IRuleBuilderOptions<T, string> IsCnpj<T>(
+        this IRuleBuilder<T, string> ruleBuilder)
     {
         return ruleBuilder.Must(BeAValidCnpj);
     }
+    
+    
+    public static IRuleBuilderOptions<T, string> IsCpf<T>(
+        this IRuleBuilder<T, string> ruleBuilder)
+    {
+        return ruleBuilder.Must(BeAValidCpf);
+    }
 
-    private static bool BeAValidCpf(string input)
+    public static bool BeAValidCpf(string input)
     {
         var numbers = ToNumbers(input);
         if (numbers.Length != 11 || numbers.Distinct().Count() == 1)
@@ -40,7 +43,7 @@ public static partial class RuleBuilderExtension
         return numbers[9] == v1 && numbers[10] == v2;
     }
 
-    private static bool BeAValidCnpj(string input)
+    public static bool BeAValidCnpj(string input)
     {
         var numbers = ToNumbers(input);
         if (numbers.Length != 14)
