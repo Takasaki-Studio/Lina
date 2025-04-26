@@ -18,8 +18,11 @@ public static partial class RuleBuilderExtension
         return ruleBuilder.Must(BeAValidCpf);
     }
 
-    public static bool BeAValidCpf(string input)
+    public static bool BeAValidCpf(string? input)
     {
+        if (string.IsNullOrWhiteSpace(input))
+            return false;
+        
         var numbers = ToNumbers(input);
         if (numbers.Length != 11 || numbers.Distinct().Count() == 1)
             return false;
@@ -43,8 +46,11 @@ public static partial class RuleBuilderExtension
         return numbers[9] == v1 && numbers[10] == v2;
     }
 
-    public static bool BeAValidCnpj(string input)
+    public static bool BeAValidCnpj(string? input)
     {
+        if (string.IsNullOrWhiteSpace(input))
+            return false;
+        
         var numbers = ToNumbers(input);
         if (numbers.Length != 14)
             return false;
