@@ -55,4 +55,51 @@ public static class LinaDatabase
     {
         service.AddLinaDbContext<T>((options, _) => { dbContextOptions.Invoke(options); }, dbContextLifetime);
     }
+
+    /// <summary>
+    /// Inject <see cref="LinaDbContext"/> into dependency injection
+    /// </summary>
+    /// <param name="service">Service collection</param>
+    /// <param name="dbContextOptions">Database configuration with assembly name for migration</param>
+    /// <param name="dbContextLifetime">Context life time</param>
+    /// <typeparam name="T">Class for assembly reference</typeparam>
+    /// <example>
+    /// <code>
+    /// serviceCollection.AddLinaDbContext&lt;Program&gt;((serviceProvider, builder, assembly) => builder.UseMySql("url",
+    ///     ServerVersion.AutoDetect("url"), options => options.MigrationsAssembly(assembly)));
+    /// </code>
+    /// </example>
+    public static void AddLinaDbContext<T>(
+        this IServiceCollection service,
+        LinaDbContextConfigurationAssemblyService dbContextOptions,
+        ServiceLifetime dbContextLifetime = ServiceLifetime.Scoped)
+    {
+        var tAssembly = typeof(T).Assembly;
+        var assemblyEntityConfigurationInject = new AssemblyEntityConfigurationInjection(tAssembly);
+        service.AddSingleton<IAssemblyEntityConfigurationInjection>(assemblyEntityConfigurationInject);
+
+        service.AddDbContext<DbContext, LinaDbContext>((s, x) => dbContextOptions.Invoke(s, x, tAssembly.FullName),
+            dbContextLifetime);
+    }
+
+    /// <summary>
+    /// Inject <see cref="LinaDbContext"/> into dependency injection
+    /// </summary>
+    /// <param name="service">Service collection</param>
+    /// <param name="dbContextOptions">Database configuration</param>
+    /// <param name="dbContextLifetime">Context life time</param>
+    /// <typeparam name="T">Class for assembly reference</typeparam>
+    /// <example>
+    /// <code>
+    /// serviceCollection.AddLinaDbContext&lt;Program&gt;((builder) => builder.UseMySql("url",
+    ///     ServerVersion.AutoDetect("url")));
+    /// </code>
+    /// </example>
+    public static void AddLinaDbContext<T>(this IServiceCollection service,
+        LinaDbContextConfigurationService dbContextOptions,
+        ServiceLifetime dbContextLifetime = ServiceLifetime.Scoped)
+    {
+        service.AddLinaDbContext<T>(
+            (serviceProvider, options, _) => { dbContextOptions.Invoke(serviceProvider, options); }, dbContextLifetime);
+    }
 }
