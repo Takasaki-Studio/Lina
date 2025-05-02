@@ -11,17 +11,22 @@ public static class QueryableExtensions
     /// <param name="query">Query execution</param>
     /// <param name="page">Current page</param>
     /// <param name="pageSize">Page size</param>
+    /// <param name="maxPageSize">Max page size</param>
     /// <typeparam name="T">Model type</typeparam>
     /// <returns>Query execution</returns>
-    public static IQueryable<T> Paginate<T>(this IQueryable<T> query, int page, int pageSize = 20)
+    public static IQueryable<T> Paginate<T>(this IQueryable<T> query, int page, int pageSize = 20, int? maxPageSize = null)
     {
-        if (page == 0) page = 1;
+        if (page == 0) 
+            page = 1;
 
         pageSize = pageSize switch
         {
             < 1 => 1,
             _ => pageSize
         };
+
+        if (pageSize > maxPageSize)
+            pageSize = maxPageSize.Value;
 
         return query.Skip((page - 1) * pageSize).Take(pageSize);
     }
